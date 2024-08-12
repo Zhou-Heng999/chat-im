@@ -1,0 +1,1374 @@
+{
+	"Language": {
+		"3000": {
+			"id": 3000,
+			"name_zh_tw": "[呲牙]",
+			"name_zh": "[龇牙]",
+			"name_en": "[Teeth]",
+			"name_hin": "[संदेश]",
+			"name_esp": "[Mensajes]",
+			"name_pt": "[Mensagens]",
+			"name_vi": "[Tin nhắn]"
+		},
+		"3001": {
+			"id": 3001,
+			"name_zh_tw": "[调皮]",
+			"name_zh": "[调皮]",
+			"name_en": "[Naughty]",
+			"name_hin": "[शरारती]",
+			"name_esp": "[Travieso]",
+			"name_pt": "[Danadinho]",
+			"name_vi": "[Nghịch ngợm]"
+		},
+		"3002": {
+			"id": 3002,
+			"name_zh_tw": "[流汗]",
+			"name_zh": "[流汗]",
+			"name_en": "[Sweating]",
+			"name_hin": "[पसीना आना]",
+			"name_esp": "[Transpiración]",
+			"name_pt": "[Suando]",
+			"name_vi": "[Đổ mồ hôi]"
+		},
+		"3003": {
+			"id": 3003,
+			"name_zh_tw": "[偷笑]",
+			"name_zh": "[偷笑]",
+			"name_en": "[Sneer]",
+			"name_hin": "[उपहास]",
+			"name_esp": "[Burla]",
+			"name_pt": "[Sneer]",
+			"name_vi": "[Chế nhạo]"
+		},
+		"3004": {
+			"id": 3004,
+			"name_zh_tw": "[再見]",
+			"name_zh": "[再见]",
+			"name_en": "[Goodbye]",
+			"name_hin": "[अलविदा]",
+			"name_esp": "[Adi]ós",
+			"name_pt": "[Adeus]",
+			"name_vi": "[Tạm biệt]"
+		},
+		"3005": {
+			"id": 3005,
+			"name_zh_tw": "[敲打]",
+			"name_zh": "[敲打]",
+			"name_en": "[Beat]",
+			"name_hin": "[मारो]",
+			"name_esp": "[Derrotar]",
+			"name_pt": "[Bater]",
+			"name_vi": "[Tiết tấu]"
+		},
+		"3006": {
+			"id": 3006,
+			"name_zh_tw": "[擦汗]",
+			"name_zh": "[擦汗]",
+			"name_en": "[Wiping sweat]",
+			"name_hin": "[पसीना बहाना]",
+			"name_esp": "[Sudor limpio]",
+			"name_pt": "[Limpando o suor]",
+			"name_vi": "[Lau mồ hôi]"
+		},
+		"3007": {
+			"id": 3007,
+			"name_zh_tw": "[豬頭]",
+			"name_zh": "[猪头]",
+			"name_en": "[Pork head]",
+			"name_hin": "[पोर्क हेड]",
+			"name_esp": "[Cabeça de porco]",
+			"name_pt": "[Cabeça de porco]",
+			"name_vi": "[Đầu lợn]"
+		},
+		"3008": {
+			"id": 3008,
+			"name_zh_tw": "[玫瑰]",
+			"name_zh": "[玫瑰]",
+			"name_en": "[Rose]",
+			"name_hin": "[रोज़ा]",
+			"name_esp": "[rosa]",
+			"name_pt": "[rosa]",
+			"name_vi": "[màu hồng]"
+		},
+		"3009": {
+			"id": 3009,
+			"name_zh_tw": "[流淚]",
+			"name_zh": "[流泪]",
+			"name_en": "[Tearful]",
+			"name_hin": "[शोकाकुल]",
+			"name_esp": "[Lloroso]",
+			"name_pt": "[Choroso]",
+			"name_vi": "[đầy nước mắt]"
+		},
+		"3010": {
+			"id": 3010,
+			"name_zh_tw": "[大哭]",
+			"name_zh": "[大哭]",
+			"name_en": "[Crying loudly]",
+			"name_hin": "[जोर-जोर से रोना]",
+			"name_esp": "[Llorando fuerte]",
+			"name_pt": "[Chorando alto]",
+			"name_vi": "[Khóc to]"
+		},
+		"3011": {
+			"id": 3011,
+			"name_zh_tw": "[噓]",
+			"name_zh": "[嘘]",
+			"name_en": "[Hush]",
+			"name_hin": "[चुप रहना]",
+			"name_esp": "[Cállate]",
+			"name_pt": "[silêncio]",
+			"name_vi": "[im lặng]"
+		},
+		"3012": {
+			"id": 3012,
+			"name_zh_tw": "[酷]",
+			"name_zh": "[酷]",
+			"name_en": "[Cool]",
+			"name_hin": "[ठंडा]",
+			"name_esp": "[Fresco]",
+			"name_pt": "[Legal]",
+			"name_vi": "[Mát mẻ]"
+		},
+		"3013": {
+			"id": 3013,
+			"name_zh_tw": "[抓狂]",
+			"name_zh": "[抓狂]",
+			"name_en": "[Crazy]",
+			"name_hin": "[पागल]",
+			"name_esp": "[Loco]",
+			"name_pt": "[Louco]",
+			"name_vi": "[Điên]"
+		},
+		"3014": {
+			"id": 3014,
+			"name_zh_tw": "[委屈]",
+			"name_zh": "[委屈]",
+			"name_en": "[Aggrieved]",
+			"name_hin": "[पीड़ित]",
+			"name_esp": "[Agraviado]",
+			"name_pt": "[Prejudicado]",
+			"name_vi": "[Bực mình]"
+		},
+		"3015": {
+			"id": 3015,
+			"name_zh_tw": "[便便]",
+			"name_zh": "[便便]",
+			"name_en": "[Defecate]",
+			"name_hin": "[ख़ारिज करना]",
+			"name_esp": "[Defecar]",
+			"name_pt": "[Defecar]",
+			"name_vi": "[đại tiện]"
+		},
+		"3016": {
+			"id": 3016,
+			"name_zh_tw": "[炸彈]",
+			"name_zh": "[炸弹]",
+			"name_en": "[Bomb]",
+			"name_hin": "[बम]",
+			"name_esp": "[Bomba]",
+			"name_pt": "[Bombear]",
+			"name_vi": "[Bom]"
+		},
+		"3017": {
+			"id": 3017,
+			"name_zh_tw": "[菜刀]",
+			"name_zh": "[菜刀]",
+			"name_en": "[Kitchen knife]",
+			"name_hin": "[रसोई का चाकू]",
+			"name_esp": "[cuchillo de cocina]",
+			"name_pt": "[faca de cozinha]",
+			"name_vi": "[dao làm bếp]"
+		},
+		"3018": {
+			"id": 3018,
+			"name_zh_tw": "[可愛]",
+			"name_zh": "[可爱]",
+			"name_en": "[Cute]",
+			"name_hin": "[प्यारा]",
+			"name_esp": "[lindo]",
+			"name_pt": "[bonitinho]",
+			"name_vi": "[dễ thương]"
+		},
+		"3019": {
+			"id": 3019,
+			"name_zh_tw": "[色]",
+			"name_zh": "[色]",
+			"name_en": "[Erotic]",
+			"name_hin": "[कामुक]",
+			"name_esp": "[Erótico]",
+			"name_pt": "[Erótico]",
+			"name_vi": "[khiêu dâm]"
+		},
+		"3020": {
+			"id": 3020,
+			"name_zh_tw": "[害羞]",
+			"name_zh": "[害羞]",
+			"name_en": "[Shy]",
+			"name_hin": "[शर्मीला]",
+			"name_esp": "[Tímido]",
+			"name_pt": "[Tímido]",
+			"name_vi": "[Xấu hổ]"
+		},
+		"3021": {
+			"id": 3021,
+			"name_zh_tw": "[得意]",
+			"name_zh": "[得意]",
+			"name_en": "[Proud]",
+			"name_hin": "[गर्व]",
+			"name_esp": "[Orgulloso]",
+			"name_pt": "[Orgulhoso]",
+			"name_vi": "[Tự hào]"
+		},
+		"3022": {
+			"id": 3022,
+			"name_zh_tw": "[吐]",
+			"name_zh": "[吐]",
+			"name_en": "[Vomit]",
+			"name_hin": "[उल्टी]",
+			"name_esp": "[Vomitar]",
+			"name_pt": "[Vomitar]",
+			"name_vi": "[Nôn]"
+		},
+		"3023": {
+			"id": 3023,
+			"name_zh_tw": "[微笑]",
+			"name_zh": "[微笑]",
+			"name_en": "[Smile]",
+			"name_hin": "[मुस्कान]",
+			"name_esp": "[Sonrisa]",
+			"name_pt": "[Sorriso]",
+			"name_vi": "[Nụ cười]"
+		},
+		"3024": {
+			"id": 3024,
+			"name_zh_tw": "[怒]",
+			"name_zh": "[怒]",
+			"name_en": "[Angry]",
+			"name_hin": "[गुस्सा]",
+			"name_esp": "[Enojado]",
+			"name_pt": "[Nervoso]",
+			"name_vi": "[Tức giận]"
+		},
+		"3025": {
+			"id": 3025,
+			"name_zh_tw": "[尷尬]",
+			"name_zh": "[尴尬]",
+			"name_en": "[Awkward]",
+			"name_hin": "[अजीब]",
+			"name_esp": "[Extra]ño",
+			"name_pt": "[Estranho]",
+			"name_vi": "[Vụng về]"
+		},
+		"3026": {
+			"id": 3026,
+			"name_zh_tw": "[驚恐]",
+			"name_zh": "[惊恐]",
+			"name_en": "[Frightened]",
+			"name_hin": "[डरा हुआ]",
+			"name_esp": "[Atemorizado]",
+			"name_pt": "[Com medo]",
+			"name_vi": "[Sợ sệt]"
+		},
+		"3027": {
+			"id": 3027,
+			"name_zh_tw": "[冷汗]",
+			"name_zh": "[冷汗]",
+			"name_en": "[Cold sweat]",
+			"name_hin": "[ठंडा पसीना]",
+			"name_esp": "[Sudor frío]",
+			"name_pt": "[Suor frio]",
+			"name_vi": "[Đổ mồ hôi lạnh]"
+		},
+		"3028": {
+			"id": 3028,
+			"name_zh_tw": "[愛心]",
+			"name_zh": "[爱心]",
+			"name_en": "[Love]",
+			"name_hin": "[प्यार]",
+			"name_esp": "[Amar]",
+			"name_pt": "[Amor]",
+			"name_vi": "[Yêu]"
+		},
+		"3029": {
+			"id": 3029,
+			"name_zh_tw": "[示愛]",
+			"name_zh": "[示爱]",
+			"name_en": "[Show love]",
+			"name_hin": "[प्यार दिखाओ]",
+			"name_esp": "[Muestra amor]",
+			"name_pt": "[Mostre amor]",
+			"name_vi": "[Thể hiện tình yêu]"
+		},
+		"3030": {
+			"id": 3030,
+			"name_zh_tw": "[白眼]",
+			"name_zh": "[白眼]",
+			"name_en": "[Roll eyes]",
+			"name_hin": "[आखें गुमान]ा",
+			"name_esp": "[Rodar los ojos]",
+			"name_pt": "[Rolar os olhos]",
+			"name_vi": "[Đảo mắt]"
+		},
+		"3031": {
+			"id": 3031,
+			"name_zh_tw": "[傲慢]",
+			"name_zh": "[傲慢]",
+			"name_en": "[Arrogant]",
+			"name_hin": "[अभिमानी]",
+			"name_esp": "[Arrogante]",
+			"name_pt": "[Arrogante]",
+			"name_vi": "[kiêu ngạo]"
+		},
+		"3032": {
+			"id": 3032,
+			"name_zh_tw": "[難過]",
+			"name_zh": "[难过]",
+			"name_en": "[Sad]",
+			"name_hin": "[उदास]",
+			"name_esp": "[Triste]",
+			"name_pt": "[Triste]",
+			"name_vi": "[Buồn]"
+		},
+		"3033": {
+			"id": 3033,
+			"name_zh_tw": "[驚訝]",
+			"name_zh": "[惊讶]",
+			"name_en": "[Surprised]",
+			"name_hin": "[हैरान]",
+			"name_esp": "[Sorprendido]",
+			"name_pt": "[Surpreso]",
+			"name_vi": "[Ngạc nhiên]"
+		},
+		"3034": {
+			"id": 3034,
+			"name_zh_tw": "[疑問]",
+			"name_zh": "[疑问]",
+			"name_en": "[Doubt]",
+			"name_hin": "[संदेह]",
+			"name_esp": "[Duda]",
+			"name_pt": "[Dúvida]",
+			"name_vi": "[Nghi ngờ]"
+		},
+		"3035": {
+			"id": 3035,
+			"name_zh_tw": "[困]",
+			"name_zh": "[困]",
+			"name_en": "[Sleepy]",
+			"name_hin": "[नींद]",
+			"name_esp": "[Somnoliento]",
+			"name_pt": "[Com sono]",
+			"name_vi": "[Buồn ngủ]"
+		},
+		"3036": {
+			"id": 3036,
+			"name_zh_tw": "[麽麽噠]",
+			"name_zh": "[么么哒]",
+			"name_en": "[Kiss]",
+			"name_hin": "[चुंबन]",
+			"name_esp": "[Beso]",
+			"name_pt": "[Beijo]",
+			"name_vi": "[Hôn]"
+		},
+		"3037": {
+			"id": 3037,
+			"name_zh_tw": "[憨笑]",
+			"name_zh": "[憨笑]",
+			"name_en": "[Funny]",
+			"name_hin": "[मज़ेदार]",
+			"name_esp": "[Divertido]",
+			"name_pt": "[Engraçado]",
+			"name_vi": "[Buồn cười]"
+		},
+		"3038": {
+			"id": 3038,
+			"name_zh_tw": "[愛情]",
+			"name_zh": "[爱情]",
+			"name_en": "[Love]",
+			"name_hin": "[Amar]",
+			"name_esp": "[Amar]",
+			"name_pt": "[Amor]",
+			"name_vi": "[Yêu]"
+		},
+		"3039": {
+			"id": 3039,
+			"name_zh_tw": "[衰]",
+			"name_zh": "[衰]",
+			"name_en": "[Unluck]",
+			"name_hin": "[बदकिस्मत]",
+			"name_esp": "[mala suerte]",
+			"name_pt": "[Azar]",
+			"name_vi": "[không may mắn]"
+		},
+		"3040": {
+			"id": 3040,
+			"name_zh_tw": "[撇嘴]",
+			"name_zh": "[撇嘴]",
+			"name_en": "[Pouting]",
+			"name_hin": "[थपथपाना]",
+			"name_esp": "[haciendo pucheros]",
+			"name_pt": "[Fazendo beicinho]",
+			"name_vi": "[bĩu môi]"
+		},
+		"3041": {
+			"id": 3041,
+			"name_zh_tw": "[陰險]",
+			"name_zh": "[阴险]",
+			"name_en": "[Insidious]",
+			"name_hin": "[कपटी]",
+			"name_esp": "[Insidioso]",
+			"name_pt": "[Insidioso]",
+			"name_vi": "[Xảo quyệt]"
+		},
+		"3042": {
+			"id": 3042,
+			"name_zh_tw": "[奮鬥]",
+			"name_zh": "[奋斗]",
+			"name_en": "[Struggle]",
+			"name_hin": "[संघर्ष]",
+			"name_esp": "[Lucha]",
+			"name_pt": "[Luta]",
+			"name_vi": "[Đấu tranh]"
+		},
+		"3043": {
+			"id": 3043,
+			"name_zh_tw": "[發呆]",
+			"name_zh": "[发呆]",
+			"name_en": "[Daze]",
+			"name_hin": "[अचंभे में डाल देना]",
+			"name_esp": "[aturdimiento]",
+			"name_pt": "[atordoado]",
+			"name_vi": "[choáng váng]"
+		},
+		"3044": {
+			"id": 3044,
+			"name_zh_tw": "[右哼哼]",
+			"name_zh": "[右哼哼]",
+			"name_en": "[Right hum]",
+			"name_hin": "[सही हुंकार]",
+			"name_esp": "[zumbido derecho]",
+			"name_pt": "[Certo, hum]",
+			"name_vi": "[Đúng rồi]"
+		},
+		"3045": {
+			"id": 3045,
+			"name_zh_tw": "[抱抱]",
+			"name_zh": "[抱抱]",
+			"name_en": "[Hug]",
+			"name_hin": "[आलिंगन]",
+			"name_esp": "[Abrazo]",
+			"name_pt": "[Abraço]",
+			"name_vi": "[Ôm]"
+		},
+		"3046": {
+			"id": 3046,
+			"name_zh_tw": "[壞笑]",
+			"name_zh": "[坏笑]",
+			"name_en": "[Smirk]",
+			"name_hin": "[नखरे की मुस्कराहट]",
+			"name_esp": "[Sonrisa afectada]",
+			"name_pt": "[Sorriso pretensioso]",
+			"name_vi": "[Mỉm cười]"
+		},
+		"3047": {
+			"id": 3047,
+			"name_zh_tw": "[飛吻]",
+			"name_zh": "[飞吻]",
+			"name_en": "[Blow a kiss]",
+			"name_hin": "[एक चुंबन दें]",
+			"name_esp": "[lanza un beso]",
+			"name_pt": "[jogar um beijo]",
+			"name_vi": "[thổi một nụ hôn]"
+		},
+		"3048": {
+			"id": 3048,
+			"name_zh_tw": "[鄙視]",
+			"name_zh": "[鄙视]",
+			"name_en": "[Despise]",
+			"name_hin": "[घृणा]",
+			"name_esp": "[Despreciar]",
+			"name_pt": "[Desprezar]",
+			"name_vi": "[khinh thường]"
+		},
+		"3049": {
+			"id": 3049,
+			"name_zh_tw": "[暈]",
+			"name_zh": "[晕]",
+			"name_en": "[Faint]",
+			"name_hin": "[बेहोश होना]",
+			"name_esp": "[Débil]",
+			"name_pt": "[Desmaiar]",
+			"name_vi": "[Mờ nhạt]"
+		},
+		"3050": {
+			"id": 3050,
+			"name_zh_tw": "[大兵]",
+			"name_zh": "[大兵]",
+			"name_en": "[Soldier]",
+			"name_hin": "[सैनिक]",
+			"name_esp": "[Soldado]",
+			"name_pt": "[Soldado]",
+			"name_vi": "[Lính]"
+		},
+		"3051": {
+			"id": 3051,
+			"name_zh_tw": "[可憐]",
+			"name_zh": "[可怜]",
+			"name_en": "[Pitiful]",
+			"name_hin": "[रहमदिल]",
+			"name_esp": "[Lamentable]",
+			"name_pt": "[Lamentável]",
+			"name_vi": "[Thương tâm]"
+		},
+		"3052": {
+			"id": 3052,
+			"name_zh_tw": "[强]",
+			"name_zh": "[强]",
+			"name_en": "[Powerful]",
+			"name_hin": "[ताकतवर]",
+			"name_esp": "[Poderoso]",
+			"name_pt": "[Poderoso]",
+			"name_vi": "[Mạnh mẽ]"
+		},
+		"3053": {
+			"id": 3053,
+			"name_zh_tw": "[弱]",
+			"name_zh": "[弱]",
+			"name_en": "[Weak]",
+			"name_hin": "[कमज़ोर]",
+			"name_esp": "[débil]",
+			"name_pt": "[fraco]",
+			"name_vi": "[yếu đuối]"
+		},
+		"3054": {
+			"id": 3054,
+			"name_zh_tw": "[握手]",
+			"name_zh": "[握手]",
+			"name_en": "[Shake hands]",
+			"name_hin": "[हाथ मिलाना]",
+			"name_esp": "[apretón de manos]",
+			"name_pt": "[apertar as mãos]",
+			"name_vi": "[bắt tay]"
+		},
+		"3055": {
+			"id": 3055,
+			"name_zh_tw": "[勝利]",
+			"name_zh": "[胜利]",
+			"name_en": "[Victory]",
+			"name_hin": "[विजय]",
+			"name_esp": "[Victoria]",
+			"name_pt": "[Vitória]",
+			"name_vi": "[Chiến thắng]"
+		},
+		"3056": {
+			"id": 3056,
+			"name_zh_tw": "[抱拳]",
+			"name_zh": "[抱拳]",
+			"name_en": "[Hold fist]",
+			"name_hin": "[मुट्ठी पकड़ो]",
+			"name_esp": "[Mantenga el puño]",
+			"name_pt": "[Segure o punho]",
+			"name_vi": "[Giữ nắm tay]"
+		},
+		"3057": {
+			"id": 3057,
+			"name_zh_tw": "[凋謝]",
+			"name_zh": "[凋谢]",
+			"name_en": "[Wither]",
+			"name_hin": "[सूख]",
+			"name_esp": "[Marchitar]",
+			"name_pt": "[Murchar]",
+			"name_vi": "[Héo]"
+		},
+		"3058": {
+			"id": 3058,
+			"name_zh_tw": "[米飯]",
+			"name_zh": "[米饭]",
+			"name_en": "[Rice]",
+			"name_hin": "[चावल]",
+			"name_esp": "[Arroz]",
+			"name_pt": "[Arroz]",
+			"name_vi": "[Cơm]"
+		},
+		"3059": {
+			"id": 3059,
+			"name_zh_tw": "[蛋糕]",
+			"name_zh": "[蛋糕]",
+			"name_en": "[Cake]",
+			"name_hin": "[केक]",
+			"name_esp": "[pastel]",
+			"name_pt": "[bolo]",
+			"name_vi": "[bánh ngọt]"
+		},
+		"3060": {
+			"id": 3060,
+			"name_zh_tw": "[西瓜]",
+			"name_zh": "[西瓜]",
+			"name_en": "[Watermelon]",
+			"name_hin": "[तरबूज]",
+			"name_esp": "[Sand]ía",
+			"name_pt": "[Melancia]",
+			"name_vi": "[Dưa hấu]"
+		},
+		"3061": {
+			"id": 3061,
+			"name_zh_tw": "[啤酒]",
+			"name_zh": "[啤酒]",
+			"name_en": "[Beer]",
+			"name_hin": "[बियर]",
+			"name_esp": "[cerveza]",
+			"name_pt": "[cerveja]",
+			"name_vi": "[bia]"
+		},
+		"3062": {
+			"id": 3062,
+			"name_zh_tw": "[瓢蟲]",
+			"name_zh": "[瓢虫]",
+			"name_en": "[Ladybug]",
+			"name_hin": "[एक प्रकार का गुबरैला]",
+			"name_esp": "[Mariquita]",
+			"name_pt": "[Joaninha]",
+			"name_vi": "[bọ rùa]"
+		},
+		"3063": {
+			"id": 3063,
+			"name_zh_tw": "[勾引]",
+			"name_zh": "[勾引]",
+			"name_en": "[Seduce]",
+			"name_hin": "[बहकाना]",
+			"name_esp": "[Seducir]",
+			"name_pt": "[Seduzir]",
+			"name_vi": "[quyến rũ]"
+		},
+		"3064": {
+			"id": 3064,
+			"name_zh_tw": "[OK]",
+			"name_zh": "[OK]",
+			"name_en": "[OK]",
+			"name_hin": "[OK]",
+			"name_esp": "[OK]",
+			"name_pt": "[OK]",
+			"name_vi": "[OK]"
+		},
+		"3065": {
+			"id": 3065,
+			"name_zh_tw": "[愛你]",
+			"name_zh": "[爱你]",
+			"name_en": "[Love you]",
+			"name_hin": "[तुमसे प्यार ह]ै",
+			"name_esp": "[Te amo]",
+			"name_pt": "[Amo você]",
+			"name_vi": "[Yêu bạn]"
+		},
+		"3066": {
+			"id": 3066,
+			"name_zh_tw": "[咖啡]",
+			"name_zh": "[咖啡]",
+			"name_en": "[Coffee]",
+			"name_hin": "[कॉफी]",
+			"name_esp": "[café]",
+			"name_pt": "[café]",
+			"name_vi": "[cà phê]"
+		},
+		"3067": {
+			"id": 3067,
+			"name_zh_tw": "[月亮]",
+			"name_zh": "[月亮]",
+			"name_en": "[Moon]",
+			"name_hin": "[चंद्रमा]",
+			"name_esp": "[Luna]",
+			"name_pt": "[Lua]",
+			"name_vi": "[Mặt trăng]"
+		},
+		"3068": {
+			"id": 3068,
+			"name_zh_tw": "[刀]",
+			"name_zh": "[刀]",
+			"name_en": "[Knife]",
+			"name_hin": "[चाकू]",
+			"name_esp": "[Cuchillo]",
+			"name_pt": "[Faca]",
+			"name_vi": "[Dao]"
+		},
+		"3069": {
+			"id": 3069,
+			"name_zh_tw": "[發抖]",
+			"name_zh": "[发抖]",
+			"name_en": "[Trembling]",
+			"name_hin": "[हिलता हुआ]",
+			"name_esp": "[Temblor]",
+			"name_pt": "[Tremendo]",
+			"name_vi": "[Run sợ]"
+		},
+		"3070": {
+			"id": 3070,
+			"name_zh_tw": "[差勁]",
+			"name_zh": "[差劲]",
+			"name_en": "[Bad]",
+			"name_hin": "[खराब]",
+			"name_esp": "[Malo]",
+			"name_pt": "[Ruim]",
+			"name_vi": "[Xấu]"
+		},
+		"3071": {
+			"id": 3071,
+			"name_zh_tw": "[拳頭]",
+			"name_zh": "[拳头]",
+			"name_en": "[Fist]",
+			"name_hin": "[मुट्ठी]",
+			"name_esp": "[Puño]",
+			"name_pt": "[Punho]",
+			"name_vi": "[nắm tay]"
+		},
+		"3072": {
+			"id": 3072,
+			"name_zh_tw": "[心碎了]",
+			"name_zh": "[心碎了]",
+			"name_en": "[Heartbroken]",
+			"name_hin": "[टूटा हुआ दिल]",
+			"name_esp": "[Con el corazón roto]",
+			"name_pt": "[De coração partido]",
+			"name_vi": "[Đau lòng]"
+		},
+		"3073": {
+			"id": 3073,
+			"name_zh_tw": "[太陽]",
+			"name_zh": "[太阳]",
+			"name_en": "[Sun]",
+			"name_hin": "[सूरज]",
+			"name_esp": "[Sol]",
+			"name_pt": "[Sol]",
+			"name_vi": "[mặt trời]"
+		},
+		"3074": {
+			"id": 3074,
+			"name_zh_tw": "[禮物]",
+			"name_zh": "[礼物]",
+			"name_en": "[Gift]",
+			"name_hin": "[उपहार]",
+			"name_esp": "[Regalo]",
+			"name_pt": "[Presente]",
+			"name_vi": "[Quà]"
+		},
+		"3075": {
+			"id": 3075,
+			"name_zh_tw": "[皮球]",
+			"name_zh": "[皮球]",
+			"name_en": "[Ball]",
+			"name_hin": "[गेंद]",
+			"name_esp": "[Pelota]",
+			"name_pt": "[Bola]",
+			"name_vi": "[Quả bóng]"
+		},
+		"3076": {
+			"id": 3076,
+			"name_zh_tw": "[骷髏]",
+			"name_zh": "[骷髅]",
+			"name_en": "[Skeleton]",
+			"name_hin": "[कंकाल]",
+			"name_esp": "[Esqueleto]",
+			"name_pt": "[Esqueleto]",
+			"name_vi": "[Bộ xương]"
+		},
+		"3077": {
+			"id": 3077,
+			"name_zh_tw": "[揮手]",
+			"name_zh": "[挥手]",
+			"name_en": "[Wave]",
+			"name_hin": "[लहर]",
+			"name_esp": "[Ola]",
+			"name_pt": "[Aceno]",
+			"name_vi": "[Sóng]"
+		},
+		"3078": {
+			"id": 3078,
+			"name_zh_tw": "[閃電]",
+			"name_zh": "[闪电]",
+			"name_en": "[Lightning]",
+			"name_hin": "[बिजली चमकना]",
+			"name_esp": "[Iluminación]",
+			"name_pt": "[Raio]",
+			"name_vi": "[Sét]"
+		},
+		"3079": {
+			"id": 3079,
+			"name_zh_tw": "[飢餓]",
+			"name_zh": "[饥饿]",
+			"name_en": "[Hunger]",
+			"name_hin": "[भूख]",
+			"name_esp": "[Hambre]",
+			"name_pt": "[Fome]",
+			"name_vi": "[Nạn đói]"
+		},
+		"3080": {
+			"id": 3080,
+			"name_zh_tw": "[咒駡]",
+			"name_zh": "[咒骂]",
+			"name_en": "[Curse]",
+			"name_hin": "[अभिशाप]",
+			"name_esp": "[Maldición]",
+			"name_pt": "[Xingamento]",
+			"name_vi": "[Nguyền rủa]"
+		},
+		"3081": {
+			"id": 3081,
+			"name_zh_tw": "[折磨]",
+			"name_zh": "[折磨]",
+			"name_en": "[Torture]",
+			"name_hin": "[यातना]",
+			"name_esp": "[Tortura]",
+			"name_pt": "[Tortura]",
+			"name_vi": "[Tra tấn]"
+		},
+		"3082": {
+			"id": 3082,
+			"name_zh_tw": "[摳鼻]",
+			"name_zh": "[抠鼻]",
+			"name_en": "[Picking the nose]",
+			"name_hin": "[नाक चुनना]",
+			"name_esp": "[Hurgarse la nariz]",
+			"name_pt": "[Escolhendo o nariz]",
+			"name_vi": "[Chọn mũi]"
+		},
+		"3083": {
+			"id": 3083,
+			"name_zh_tw": "[鼓掌]",
+			"name_zh": "[鼓掌]",
+			"name_en": "[Applaud]",
+			"name_hin": "[सराहना]",
+			"name_esp": "[Aplaudir]",
+			"name_pt": "[Aplaudir]",
+			"name_vi": "[Vỗ tay]"
+		},
+		"3084": {
+			"id": 3084,
+			"name_zh_tw": "[糗大了]",
+			"name_zh": "[糗大了]",
+			"name_en": "[It is a hoax]",
+			"name_hin": "[यह एक धोखा है]",
+			"name_esp": "[es un engaño]",
+			"name_pt": "[É uma farsa]",
+			"name_vi": "[Đó là một trò lừa bịp]"
+		},
+		"3085": {
+			"id": 3085,
+			"name_zh_tw": "[左哼哼]",
+			"name_zh": "[左哼哼]",
+			"name_en": "[Left hum]",
+			"name_hin": "[बायां हुंकार]",
+			"name_esp": "[Zumbido izquierdo]",
+			"name_pt": "[Esquerda hum]",
+			"name_vi": "[trái hum]"
+		},
+		"3086": {
+			"id": 3086,
+			"name_zh_tw": "[打哈欠]",
+			"name_zh": "[打哈欠]",
+			"name_en": "[Yawn]",
+			"name_hin": "[जम्हाई लेना]",
+			"name_esp": "[Bostezo]",
+			"name_pt": "[Bocejar]",
+			"name_vi": "[Ngáp]"
+		},
+		"3087": {
+			"id": 3087,
+			"name_zh_tw": "[快哭了]",
+			"name_zh": "[快哭了]",
+			"name_en": "[Almost crying]",
+			"name_hin": "[लगभग रो रहा हूँ]",
+			"name_esp": "[Casi llorando]",
+			"name_pt": "[Quase chorando]",
+			"name_vi": "[Gần như khóc]"
+		},
+		"3088": {
+			"id": 3088,
+			"name_zh_tw": "[嚇]",
+			"name_zh": "[吓]",
+			"name_en": "[Scared]",
+			"name_hin": "[डरा हुआ]",
+			"name_esp": "[Asustado]",
+			"name_pt": "[Assustado]",
+			"name_vi": "[Sợ hãi]"
+		},
+		"3089": {
+			"id": 3089,
+			"name_zh_tw": "[篮球]",
+			"name_zh": "[篮球]",
+			"name_en": "[Basketball]",
+			"name_hin": "[बास्केटबाल]",
+			"name_esp": "[Baloncesto]",
+			"name_pt": "[Basquetebol]",
+			"name_vi": "[Bóng rổ]"
+		},
+		"3090": {
+			"id": 3090,
+			"name_zh_tw": "[乒乓]",
+			"name_zh": "[乒乓]",
+			"name_en": "[Pingpong]",
+			"name_hin": "[टेबल टेनिस]",
+			"name_esp": "[Tenis de mesa]",
+			"name_pt": "[Tênis de mesa]",
+			"name_vi": "[Bóng bàn]"
+		},
+		"3091": {
+			"id": 3091,
+			"name_zh_tw": "[NO]",
+			"name_zh": "[NO]",
+			"name_en": "[NO]",
+			"name_hin": "[NO]",
+			"name_esp": "[NO]",
+			"name_pt": "[NO]",
+			"name_vi": "[NO]"
+		},
+		"3092": {
+			"id": 3092,
+			"name_zh_tw": "[跳跳]",
+			"name_zh": "[跳跳]",
+			"name_en": "[Jump jump]",
+			"name_hin": "[कुदें कुदें]",
+			"name_esp": "[Salta Salta]",
+			"name_pt": "[Salte, pule]",
+			"name_vi": "[Nhảy nhảy]"
+		},
+		"3093": {
+			"id": 3093,
+			"name_zh_tw": "[慪火]",
+			"name_zh": "[怄火]",
+			"name_en": "[Get angry]",
+			"name_hin": "[क्रोध करना]",
+			"name_esp": "[Enfadarse]",
+			"name_pt": "[Ficar com raiva]",
+			"name_vi": "[Trở nên tức giận]"
+		},
+		"3094": {
+			"id": 3094,
+			"name_zh_tw": "[轉圈]",
+			"name_zh": "[转圈]",
+			"name_en": "[Spin in circles]",
+			"name_hin": "[वृत्तों में घूमना]",
+			"name_esp": "[girar en círculos]",
+			"name_pt": "girar em círculos",
+			"name_vi": "[quay vòng tròn]"
+		},
+		"3095": {
+			"id": 3095,
+			"name_zh_tw": "[磕頭]",
+			"name_zh": "[磕头]",
+			"name_en": "[Kowtow]",
+			"name_hin": "[प्रणाम]",
+			"name_esp": "[Inclinarse]",
+			"name_pt": "[Reverenciar]",
+			"name_vi": "[lạy]"
+		},
+		"3096": {
+			"id": 3096,
+			"name_zh_tw": "[回頭]",
+			"name_zh": "[回头]",
+			"name_en": "[Look back]",
+			"name_hin": "[पीछे देखना]",
+			"name_esp": "[Mirar atrás]",
+			"name_pt": "[Olhe para trás]",
+			"name_vi": "[Nhìn lại]"
+		},
+		"3097": {
+			"id": 3097,
+			"name_zh_tw": "[跳繩]",
+			"name_zh": "[跳绳]",
+			"name_en": "[Jump rope]",
+			"name_hin": "[रस्सी कूदना]",
+			"name_esp": "[saltar la cuerda]",
+			"name_pt": "[Pular corda]",
+			"name_vi": "[Nhảy dây]"
+		},
+		"3098": {
+			"id": 3098,
+			"name_zh_tw": "[激動]",
+			"name_zh": "[激动]",
+			"name_en": "[Excited]",
+			"name_hin": "[उत्साहित]",
+			"name_esp": "[Emocionado]",
+			"name_pt": "[Excitado]",
+			"name_vi": "[Hào hứng]"
+		},
+		"3099": {
+			"id": 3099,
+			"name_zh_tw": "[街舞]",
+			"name_zh": "[街舞]",
+			"name_en": "[hip-hop]",
+			"name_hin": "[हिप हॉप]",
+			"name_esp": "[hip hop]",
+			"name_pt": "[hip-hop]",
+			"name_vi": "[Hiphop]"
+		},
+		"3100": {
+			"id": 3100,
+			"name_zh_tw": "[獻吻]",
+			"name_zh": "[献吻]",
+			"name_en": "[Give a kiss]",
+			"name_hin": "[एक चुंबन दे]",
+			"name_esp": "[dar un beso]",
+			"name_pt": "[dê um beijo]",
+			"name_vi": "[hôn một cái]"
+		},
+		"3101": {
+			"id": 3101,
+			"name_zh_tw": "[左太極]",
+			"name_zh": "[左太极]",
+			"name_en": "[Left Tai Chi]",
+			"name_hin": "[ताई ची को छोड़ दिया]",
+			"name_esp": "[Tai Chi izquierdo]",
+			"name_pt": "[Tai Chi Esquerdo]",
+			"name_vi": "[Thái Cực Quyền trái]"
+		},
+		"3102": {
+			"id": 3102,
+			"name_zh_tw": "[右太極]",
+			"name_zh": "[右太极]",
+			"name_en": "[Right Tai Chi]",
+			"name_hin": "[सातोघट ओबी क्षेत्र]",
+			"name_esp": "[Área de Satoght Obi]",
+			"name_pt": "[Área de Satoght obi]",
+			"name_vi": "[Khu vực Satoght obi]"
+		},
+		"3103": {
+			"id": 3103,
+			"name_zh_tw": "[閉嘴]",
+			"name_zh": "[闭嘴]",
+			"name_en": "[Shut up]",
+			"name_hin": "[चुप रहो]",
+			"name_esp": "[Callarse la boca]",
+			"name_pt": "[Cale-se]",
+			"name_vi": "[Câm miệng]"
+		},
+		"3104": {
+			"id": 3104,
+			"name_zh_tw": "[貓咪]",
+			"name_zh": "[猫咪]",
+			"name_en": "[Cat]",
+			"name_hin": "[बिल्ली]",
+			"name_esp": "[Gato]",
+			"name_pt": "[Gato]",
+			"name_vi": "[Con mèo]"
+		},
+		"3105": {
+			"id": 3105,
+			"name_zh_tw": "[紅雙喜]",
+			"name_zh": "[红双喜]",
+			"name_en": "[Double happiness]",
+			"name_hin": "[दोहरी खुशी]",
+			"name_esp": "[Doble felicidad]",
+			"name_pt": "[Felicidade em dobro]",
+			"name_vi": "[Hạnh phúc nhân đôi]"
+		},
+		"3106": {
+			"id": 3106,
+			"name_zh_tw": "[鞭炮]",
+			"name_zh": "[鞭炮]",
+			"name_en": "[Firecracker]",
+			"name_hin": "[पटाखे]",
+			"name_esp": "[Petardo]",
+			"name_pt": "[Fogo de artifício]",
+			"name_vi": "[pháo nổ]"
+		},
+		"3107": {
+			"id": 3107,
+			"name_zh_tw": "[紅燈籠]",
+			"name_zh": "[红灯笼]",
+			"name_en": "[Red Lantern]",
+			"name_hin": "[लाल लालटेन]",
+			"name_esp": "[linterna roja]",
+			"name_pt": "[Lanterna Vermelha]",
+			"name_vi": "[Đèn lồng đỏ]"
+		},
+		"3108": {
+			"id": 3108,
+			"name_zh_tw": "[麻將]",
+			"name_zh": "[麻将]",
+			"name_en": "[Mahjong]",
+			"name_hin": "[महजोंग]",
+			"name_esp": "[Dominó chino]",
+			"name_pt": "[Mahjong]",
+			"name_vi": "[mạt chược]"
+		},
+		"3109": {
+			"id": 3109,
+			"name_zh_tw": "[麥克風]",
+			"name_zh": "[麦克风]",
+			"name_en": "[Microphone]",
+			"name_hin": "[माइक्रोफ़ोन]",
+			"name_esp": "[Micrófono]",
+			"name_pt": "[Microfone]",
+			"name_vi": "[Cái mic cờ rô]"
+		},
+		"3110": {
+			"id": 3110,
+			"name_zh_tw": "[禮品袋]",
+			"name_zh": "[礼品袋]",
+			"name_en": "[Gift bag]",
+			"name_hin": "[उपहार बैग]",
+			"name_esp": "[Bolsa de regalo]",
+			"name_pt": "[Embalagem de presente]",
+			"name_vi": "[Túi quà]"
+		},
+		"3111": {
+			"id": 3111,
+			"name_zh_tw": "[信封]",
+			"name_zh": "[信封]",
+			"name_en": "[Envelope]",
+			"name_hin": "[लिफ़ाफ़ा]",
+			"name_esp": "[Sobre]",
+			"name_pt": "[Envelope]",
+			"name_vi": "[Phong bì]"
+		},
+		"3112": {
+			"id": 3112,
+			"name_zh_tw": "[象棋]",
+			"name_zh": "[象棋]",
+			"name_en": "[Chess]",
+			"name_hin": "[शतरंज]",
+			"name_esp": "[Ajedrez]",
+			"name_pt": "[Xadrez]",
+			"name_vi": "[Cờ vua]"
+		},
+		"3113": {
+			"id": 3113,
+			"name_zh_tw": "[彩帶]",
+			"name_zh": "[彩带]",
+			"name_en": "[Ribbons]",
+			"name_hin": "[रिबन]",
+			"name_esp": "[Cintas]",
+			"name_pt": "[Fitas]",
+			"name_vi": "[Ruy băng]"
+		},
+		"3114": {
+			"id": 3114,
+			"name_zh_tw": "[蠟燭]",
+			"name_zh": "[蜡烛]",
+			"name_en": "[Candle]",
+			"name_hin": "[मोमबत्ती]",
+			"name_esp": "[Vela]",
+			"name_pt": "[Vela]",
+			"name_vi": "[Nến]"
+		},
+		"3115": {
+			"id": 3115,
+			"name_zh_tw": "[爆筋]",
+			"name_zh": "[爆筋]",
+			"name_en": "[Burst tendons]",
+			"name_hin": "[कण्डरा फटना]",
+			"name_esp": "[tendones reventados]",
+			"name_pt": "[Tendões estourados]",
+			"name_vi": "[Gân vỡ]"
+		},
+		"3116": {
+			"id": 3116,
+			"name_zh_tw": "[棒棒糖]",
+			"name_zh": "[棒棒糖]",
+			"name_en": "[Lollipop]",
+			"name_hin": "[चूसने की मिठाई]",
+			"name_esp": "[Chupete]",
+			"name_pt": "[Pirulito]",
+			"name_vi": "[kẹo mút]"
+		},
+		"3117": {
+			"id": 3117,
+			"name_zh_tw": "[奶瓶]",
+			"name_zh": "[奶瓶]",
+			"name_en": "[Baby bottle]",
+			"name_hin": "[बच्चे का बोतल]",
+			"name_esp": "[biberón]",
+			"name_pt": "[Mamadeira]",
+			"name_vi": "[bình sữa em bé]"
+		},
+		"3118": {
+			"id": 3118,
+			"name_zh_tw": "[麵條]",
+			"name_zh": "[面条]",
+			"name_en": "[Noodle]",
+			"name_hin": "[सिर]",
+			"name_esp": "[Fideos]",
+			"name_pt": "[Macarrão]",
+			"name_vi": "[Bún]"
+		},
+		"3119": {
+			"id": 3119,
+			"name_zh_tw": "[香蕉]",
+			"name_zh": "[香蕉]",
+			"name_en": "[Banana]",
+			"name_hin": "[केला]",
+			"name_esp": "[Banana]",
+			"name_pt": "[Banana]",
+			"name_vi": "[Chuối]"
+		},
+		"3120": {
+			"id": 3120,
+			"name_zh_tw": "[飛機]",
+			"name_zh": "[飞机]",
+			"name_en": "[Airplane]",
+			"name_hin": "[विमान]",
+			"name_esp": "[Avión]",
+			"name_pt": "[Avião]",
+			"name_vi": "[Máy bay]"
+		},
+		"3121": {
+			"id": 3121,
+			"name_zh_tw": "[左車頭]",
+			"name_zh": "[左车头]",
+			"name_en": "[Left front]",
+			"name_hin": "[वाम मोर्चा]",
+			"name_esp": "[Frente izquierdo]",
+			"name_pt": "[Frente esquerda]",
+			"name_vi": "[Phía trước bên trái]"
+		},
+		"3122": {
+			"id": 3122,
+			"name_zh_tw": "[車廂]",
+			"name_zh": "[车厢]",
+			"name_en": "[Car]",
+			"name_hin": "[कार]",
+			"name_esp": "[Auto]",
+			"name_pt": "[Carro]",
+			"name_vi": "[Xe hơi]"
+		},
+		"3123": {
+			"id": 3123,
+			"name_zh_tw": "[右車頭]",
+			"name_zh": "[右车头]",
+			"name_en": "[Right front]",
+			"name_hin": "[सही मोर्चा]",
+			"name_esp": "[Frente derecho]",
+			"name_pt": "[Frente direita]",
+			"name_vi": "[Phía trước bên phải]"
+		},
+		"3124": {
+			"id": 3124,
+			"name_zh_tw": "[多雲]",
+			"name_zh": "[多云]",
+			"name_en": "[Partly cloudy]",
+			"name_hin": "[आंशिक रूप से बादल छाएंगे]",
+			"name_esp": "[Parcialmente nublado]",
+			"name_pt": "[Parcialmente nublado]",
+			"name_vi": "[Có mây rải rác]"
+		},
+		"3125": {
+			"id": 3125,
+			"name_zh_tw": "[鈔票]",
+			"name_zh": "[钞票]",
+			"name_en": "[Banknote]",
+			"name_hin": "[नोट]",
+			"name_esp": "[Billete]",
+			"name_pt": "[Nota]",
+			"name_vi": "[tiền giấy]"
+		},
+		"3126": {
+			"id": 3126,
+			"name_zh_tw": "[熊貓]",
+			"name_zh": "[熊猫]",
+			"name_en": "[Panda]",
+			"name_hin": "[पांडा]",
+			"name_esp": "[Panda]",
+			"name_pt": "[Panda]",
+			"name_vi": "[gấu trúc]"
+		},
+		"3127": {
+			"id": 3127,
+			"name_zh_tw": "[燈泡]",
+			"name_zh": "[灯泡]",
+			"name_en": "[Light bulb]",
+			"name_hin": "[लाइट बल्ब]",
+			"name_esp": "[Bombilla]",
+			"name_pt": "[Lâmpada elétrica]",
+			"name_vi": "[Bóng đèn]"
+		},
+		"3128": {
+			"id": 3128,
+			"name_zh_tw": "[風車]",
+			"name_zh": "[风车]",
+			"name_en": "[Windmill]",
+			"name_hin": "[विंडमिल]",
+			"name_esp": "[Molino]",
+			"name_pt": "[Moinho de vento]",
+			"name_vi": "[Cối xay gió]"
+		},
+		"3129": {
+			"id": 3129,
+			"name_zh_tw": "[鬧鐘]",
+			"name_zh": "[闹钟]",
+			"name_en": "[Alarm clock]",
+			"name_hin": "[अलार्म घड़ी]",
+			"name_esp": "[Despertador]",
+			"name_pt": "[Despertador]",
+			"name_vi": "[Đồng hồ báo thức]"
+		},
+		"3130": {
+			"id": 3130,
+			"name_zh_tw": "[雨傘]",
+			"name_zh": "[雨伞]",
+			"name_en": "[Umbrella]",
+			"name_hin": "[छाता]",
+			"name_esp": "[Paraguas]",
+			"name_pt": "[Guarda-chuva]",
+			"name_vi": "[Chiếc ô]"
+		},
+		"3131": {
+			"id": 3131,
+			"name_zh_tw": "[彩球]",
+			"name_zh": "[彩球]",
+			"name_en": "[Colored balls]",
+			"name_hin": "[रंगीन गेंद]ें",
+			"name_esp": "[bolas de colores]",
+			"name_pt": "[Bolas coloridas]",
+			"name_vi": "[Quả bóng màu]"
+		},
+		"3132": {
+			"id": 3132,
+			"name_zh_tw": "[鑽戒]",
+			"name_zh": "[钻戒]",
+			"name_en": "[Diamond ring]",
+			"name_hin": "[हीरे की अंगूठी]",
+			"name_esp": "[anillo de diamantes]",
+			"name_pt": "[anel de diamante]",
+			"name_vi": "[Chiếc nhẫn kim cương]"
+		},
+		"3133": {
+			"id": 3133,
+			"name_zh_tw": "[沙發]",
+			"name_zh": "[沙发]",
+			"name_en": "[Sofa]",
+			"name_hin": "[सोफ़ा]",
+			"name_esp": "[Sofá]",
+			"name_pt": "[Sofá]",
+			"name_vi": "[Ghế sô pha]"
+		},
+		"3134": {
+			"id": 3134,
+			"name_zh_tw": "[紙巾]",
+			"name_zh": "[纸巾]",
+			"name_en": "[Tissue]",
+			"name_hin": "[ऊतक]",
+			"name_esp": "[Tejido]",
+			"name_pt": "[Tecido]",
+			"name_vi": "[Mô]"
+		},
+		"3135": {
+			"id": 3135,
+			"name_zh_tw": "[手槍]",
+			"name_zh": "[手枪]",
+			"name_en": "[Pistol]",
+			"name_hin": "[पिस्तौल]",
+			"name_esp": "[Pistola]",
+			"name_pt": "[Pistola]",
+			"name_vi": "[Súng lục]"
+		},
+		"3136": {
+			"id": 3136,
+			"name_zh_tw": "[青蛙]",
+			"name_zh": "[青蛙]",
+			"name_en": "[Frog]",
+			"name_hin": "[मेंढक]",
+			"name_esp": "[Rana]",
+			"name_pt": "[Sapo]",
+			"name_vi": "[Con ếch]"
+		}
+	}
+}

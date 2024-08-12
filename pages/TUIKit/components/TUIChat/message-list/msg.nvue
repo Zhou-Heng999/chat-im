@@ -1,0 +1,23 @@
+<template>
+	 <list>
+		<cell v-for="(item, index) in dataList" :key="item.id">
+			<!-- <slot name="msg" :cell='item' ></slot> -->
+		      <text>{{item.ID}}</text>
+		    </cell>
+	 <list>
+</template>
+
+<script>
+	export default {
+		props:{
+			dataList:{
+				type: Array,
+				default: ()=>[]
+			}
+		}
+	}
+</script>
+
+<style>
+
+</style>

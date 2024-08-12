@@ -1,0 +1,399 @@
+<template>
+  <view>
+    <yeim-chat-page
+      ref="chatpage"
+      :style="style"
+      :options="options"
+      :messages="messages"
+      @navigate-back="navigateBack"
+      @navigate-more="navigateMore"
+      @load-more="loadMore"
+      @avatar-action="avatarAction"
+      @send="sendTextMessage"
+      @voice-end="voiceEnd"
+      @tools-action="toolsAction"
+      @revoke-message="revokeMessage"
+      @delete-message="deleteMessage"
+    >
+    </yeim-chat-page>
+  </view>
+</template>
+<script>
+	// const YeimChatPage =uni.requireNativePlugin('YeIM-Chat-Page');
+	import TUIChatEngine from "@tencentcloud/chat-uikit-engine";
+  export default {
+    data() {
+      return {
+        time: 0,
+        style: {
+          width: uni.getSystemInfoSync().screenWidth + 'px',
+          height: uni.getSystemInfoSync().screenHeight + 'px',
+        },
+        options: {},
+        conversation: {},
+        messages: [],
+        nextReqMessageID: '',
+        isCompleted: false,
+      };
+    },
+    onLoad(option) {
+      //接收url参数，转会话信息
+      this.conversation.id = 'dev#1704785106785';
+      this.conversation.name = option.name;
+
+      //url random，用于解除预加载
+      this.time = option.time;
+
+      //组件初始化参数
+      this.options = {
+        structure: 'tim', //消息结构类型： tim
+        userInfo: {
+          id: 'dev#lyc001',
+          name: '用户本人',
+        }, // 当前登录用户
+        conversation: this.conversation, // 会话用户信息（群信息）：name
+        badge: 10, // 未读角标
+        showOnlineStatus: true, //是否显示在线状态
+        onlineStatus: true, // 是否在线
+        showName: false, //是否显示列表内除自己外，别人的名称
+        amapWebKey: '高德web key', // 如需要位置消息，则需填写高德地图 Web Key用作显示位置消息的静态地图
+        //更多功能
+        tools: [
+          {
+            name: '相册',
+            icon: '/static/ic_more_item_image.png',
+            action: 'album',
+          },
+          {
+            name: '视频',
+            icon: '/static/ic_more_item_cap.png',
+            action: 'photograph',
+          },
+          {
+            name: '视频通话',
+            icon: '/static/ic_more_item_video_call.png',
+            action: 'videoCall',
+          },
+          {
+            name: '语音通话',
+            icon: '/static/ic_more_item_voice_call.png',
+            action: 'voiceCall',
+          },
+          {
+            name: '文件',
+            icon: '/static/ic_more_item_files.png',
+            action: 'files',
+          },
+          {
+            name: '位置',
+            icon: '/static/ic_more_item_location.png',
+            action: 'location',
+          },
+        ],
+      };
+
+      //此处承接上个页面的：imResponse（全局变量或者Vuex赋值）
+
+      //这里假设我已经拿到了imResponse
+      // eg: const imResponse = getApp().globalData.imResponse;
+      // const messageList = imResponse.data.messageList;
+      // this.nextReqMessageID = imResponse.data.nextReqMessageID;
+      // this.isCompleted = imResponse.data.isCompleted;
+
+      //给组件 messages 赋值
+      // this.messages = messageList;
+    },
+    onShow() {
+      //监听腾讯IM MESSAGE_RECEIVED时间，收到消息后调用onMessage
+      uni.$chatKit.chat.on(TUIChatEngine.EVENT.MESSAGE_RECEIVED, this.onMessage, this);
+    },
+    onUnload() {
+      //解除预加载
+      let url =
+        '/pages/index/chat?id=' +
+        this.conversation.id +
+        '&name=' +
+        this.conversation.name +
+        '&time=' +
+        this.time;
+      uni.unPreloadPage({
+        url: url,
+      });
+
+      //取消监听MESSAGE_RECEIVED
+      uni.$chatKit.chat.off(TUIChatEngine.EVENT.MESSAGE_RECEIVED, this.onMessage);
+    },
+    onBackPress() {
+      //执行恢复设置，防止UI错位
+      this.$refs.chatpage.restore();
+
+      //解除预加载
+      let url =
+        '/pages/index/chat?id=' +
+        this.conversation.id +
+        '&name=' +
+        this.conversation.name +
+        '&time=' +
+        this.time;
+      uni.unPreloadPage({
+        url: url,
+      });
+
+      //取消监听MESSAGE_RECEIVED
+      uni.$chatKit.chat.off(TUIChatEngine.EVENT.MESSAGE_RECEIVED, this.onMessage);
+    },
+    methods: {
+      onMessage: function (e) {
+        //收到消息，插入到消息列表中
+		console.log(55555,e)
+        try {
+          let list = e.data;
+          if (list) {
+            for (let i = 0; i < list.length; i++) {
+              let message = list[i];
+              //去重、防乱入
+              if (message.to === this.conversation.id) {
+                let index = this.messages.findIndex((item) => item.ID === message.ID);
+                if (index === -1) {
+                  //messages可加，也可不加，此处push进去，是可能后续需要用到messages
+                  //组件的messages属性，仅在第一次赋值时生效，以后修改messages不影响组件内部消息列表
+                  this.messages.push(message);
+                  //插入到消息列表
+                  this.$refs.chatpage.insertMessage(message);
+                }
+              }
+            }
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      navigateBack() {
+        //左侧导航栏返回图标点击事件
+      },
+      navigateMore() {
+        //右侧导航栏更多图标点击事件
+      },
+      avatarAction(e) {
+        //头像点击事件
+        console.log(e);
+      },
+      loadMore() {
+        //下拉加载历史记录回调
+        if (this.nextReqMessageID != '' && !this.isCompleted) {
+          let promise = uni.$chatKit.chat.getMessageList({
+            conversationID: 'dev#1704785106785',
+            nextReqMessageID: this.nextReqMessageID,
+            count: 15,
+          });
+          promise.then((imResponse) => {
+            const messageList = imResponse.data.messageList; // 消息列表。
+            this.nextReqMessageID = imResponse.data.nextReqMessageID; // 用于续拉，分页续拉时需传入该字段。
+            this.isCompleted = imResponse.data.isCompleted;
+            this.$refs.chatpage.finishLoadMore(messageList);
+          });
+        } else {
+          this.$refs.chatpage.finishLoadMore([]);
+        }
+      },
+      sendTextMessage(e) {
+        //发送按钮点击事件
+        let detail = e.detail;
+        let text = detail.text;
+        if (text != '') {
+          let message = uni.$chatKit.chat.createTextMessage({
+            to: 'dev#1704785106785',
+            conversationType: 'GROUP',
+            payload: {
+              text: text,
+            },
+          });
+
+          this.messages.push(message);
+          this.$refs.chatpage.insertMessage(message);
+
+          let promise = uni.$chatKit.chat.sendMessage(message);
+
+          promise
+            .then((imResponse) => {
+              this.$refs.chatpage.updateMessageStatus(imResponse.data.message);
+            })
+            .catch((imError) => {
+              console.warn('sendMessage error:', imError);
+              message.status = 'fail';
+              this.$refs.chatpage.updateMessageStatus(imResponse.data.message);
+            });
+        }
+      },
+      voiceEnd(e) {
+        //组件内，用户语音完毕事件，只有用户确认发送语音后，才会回调此方法
+        const message = uni.$chatKit.chat.createAudioMessage({
+          to: this.conversation.id,
+          conversationType: uni.$chatKit.chat.TYPES.CONV_C2C,
+          payload: {
+            file: e.detail,
+          },
+        });
+
+        this.messages.push(message);
+        this.$refs.chatpage.insertMessage(message);
+
+        let promise = uni.$chatKit.chat.sendMessage(message);
+        promise
+          .then((imResponse) => {
+            this.$refs.chatpage.updateMessageStatus(imResponse.data.message);
+          })
+          .catch(function (imError) {
+            console.warn('sendMessage error:', imError);
+            message.status = 'fail';
+            this.$refs.chatpage.updateMessageStatus(imResponse.data.message);
+          });
+      },
+      revokeMessage(e) {
+        //撤回消息回调
+        let messageId = e.detail.messageId;
+        let message = this.messages.find((item) => item.ID == messageId);
+        uni.showLoading({
+          title: '撤回中...',
+        });
+        let promise = uni.$chatKit.chat.revokeMessage(message);
+        promise
+          .then((imResponse) => {
+            // 消息撤回成功
+            uni.hideLoading();
+            this.$refs.chatpage.updateMessage(imResponse.data.message);
+          })
+          .catch(function (imError) {
+            uni.hideLoading();
+            if (imError.code == 20016) {
+              //消息撤回超过了时间限制（默认2分钟）
+              uni.showModal({
+                title: '提示',
+                content: '消息撤回超过了时间限制2分钟',
+              });
+            }
+            // 消息撤回失败
+            console.warn('revokeMessage error:', imError);
+          });
+      },
+      deleteMessage(e) {
+        //删除消息回调
+        let messageId = e.detail.messageId;
+        let message = this.messages.find((item) => item.ID == messageId);
+        uni.showLoading({
+          title: '删除中...',
+        });
+        let promise = uni.$chatKit.chat.deleteMessage([message]);
+        promise
+          .then((imResponse) => {
+            // 删除消息成功
+            uni.hideLoading();
+            this.$refs.chatpage.removeMessage(message);
+          })
+          .catch(function (imError) {
+            uni.hideLoading();
+            // 删除消息失败
+            console.warn('deleteMessage error:', imError);
+            uni.showToast({
+              icon: 'error',
+              title: '删除失败',
+            });
+          });
+      },
+      toolsAction(e) {
+        //更多功能点击事件
+        if (e.detail) {
+          let detail = e.detail;
+          let action = detail.action;
+          if (action == 'album') {
+            uni.chooseImage({
+              count: 1,
+              sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+              success: (res) => {
+                let message = uni.$chatKit.chat.createImageMessage({
+                  to: this.conversation.id,
+                  conversationType: uni.$chatKit.chat.TYPES.CONV_C2C,
+                  payload: {
+                    file: res,
+                  },
+                  onProgress: function (event) {
+                    console.log('file uploading:', event);
+                  },
+                });
+                this.messages.push(message);
+                this.$refs.chatpage.insertMessage(message);
+
+                let promise = uni.$chatKit.chat.sendMessage(message);
+                promise
+                  .then((imResponse) => {
+                    this.$refs.chatpage.updateMessageStatus(imResponse.data.message);
+                  })
+                  .catch(function (imError) {
+                    console.warn('sendMessage error:', imError);
+                    message.status = 'fail';
+                    this.$refs.chatpage.updateMessageStatus(imResponse.data.message);
+                  });
+              },
+            });
+          } else if (action == 'photograph') {
+            uni.chooseVideo({
+              count: 1,
+              maxDuration: 60, // 设置最长时间60s
+              camera: 'back', // 后置摄像头
+              success: (res) => {
+                let message = uni.$chatKit.chat.createVideoMessage({
+                  to: this.conversation.id,
+                  conversationType: uni.$chatKit.chat.TYPES.CONV_C2C,
+                  payload: {
+                    file: res,
+                  },
+                  onProgress: function (event) {
+                    console.log('file uploading:', event);
+                  },
+                });
+                this.messages.push(message);
+                this.$refs.chatpage.insertMessage(message);
+
+                let promise = uni.$chatKit.chat.sendMessage(message);
+                promise
+                  .then((imResponse) => {
+                    this.$refs.chatpage.updateMessageStatus(imResponse.data.message);
+                  })
+                  .catch(function (imError) {
+                    console.warn('sendMessage error:', imError);
+                    message.status = 'fail';
+                    this.$refs.chatpage.updateMessageStatus(imResponse.data.message);
+                  });
+              },
+            });
+          } else if (action == 'files') {
+          } else if (action == 'location') {
+            uni.chooseLocation({
+              success: (res) => {
+                let message = uni.$chatKit.chat.createLocationMessage({
+                  to: this.conversation.id,
+                  conversationType: uni.$chatKit.chat.TYPES.CONV_C2C,
+                  payload: {
+                    description: res.name + '|' + res.address,
+                    longitude: res.longitude, // 经度
+                    latitude: res.latitude, // 纬度
+                  },
+                });
+                let promise = uni.$chatKit.chat.sendMessage(message);
+                promise
+                  .then((imResponse) => {
+                    this.messages.push(imResponse.data.message);
+                    this.$refs.chatpage.insertMessage(imResponse.data.message);
+                  })
+                  .catch(function (imError) {
+                    // 发送失败
+                    console.warn('sendMessage error:', imError);
+                  });
+              },
+            });
+          }
+        }
+      },
+    },
+  };
+</script>

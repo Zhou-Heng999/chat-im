@@ -1,0 +1,473 @@
+{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "IM"
+      }
+    },
+	{
+	  "path": "pages/community/index",
+	  "style": {
+	    "navigationBarTitleText": "社区",
+		"disableScroll": true
+	  }
+	},
+    {
+      "path": "pages/home/index", // 您的项目首页
+	  "style": {
+	      "disableScroll": true
+		}
+    },
+    {
+      "path": "pages/home/views/createChat/index",
+      "style": {
+        "navigationBarTitleText": "创建聊天"
+      }
+    },
+	{
+	  "path": "pages/home/views/chat/index",
+	  "style": {
+	    "navigationBarTitleText": "聊天"
+	  }
+	},
+	{
+	  "path": "pages/home/views/chat/test",
+	  "style": {
+	    "navigationBarTitleText": "聊天"
+	  }
+	},
+	{
+	  "path": "pages/home/views/chat/chat",
+	  "style": {
+	    "navigationBarTitleText": "聊天",
+		"enablePullDownRefresh": false,
+		"disableScroll": true,
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "black"
+	  }
+	},
+	{
+	  "path": "pages/home/views/search/index",
+	  "style": {
+	    "navigationBarTitleText": "搜索"
+	  }
+	},
+	{
+	  "path": "pages/home/views/chatUser/index",
+	  "style": {
+	    "navigationBarTitleText": "搜索"
+	  }
+	},
+    {
+      "path": "pages/home/views/createChat/views/createInfo/index",
+      "style": {
+        "navigationBarTitleText": "创建聊天"
+      }
+    },
+    {
+      "path": "pages/home/views/addFriend/index",
+      "style": {
+        "navigationBarTitleText": "添加联系人"
+      }
+    },
+    {
+      "path": "pages/home/views/friendInfo/index",
+      "style": {
+        "navigationBarTitleText": "详情"
+      }
+    },
+    {
+      "path": "pages/my/views/edit/index",
+      "style": {
+        "navigationBarTitleText": "编辑资料"
+      }
+    },
+    {
+      "path": "pages/my/views/code/index",
+      "style": {
+        "navigationBarTitleText": "我的二维码"
+      }
+    },
+    {
+      "path": "pages/my/views/safe/index",
+      "style": {
+        "navigationBarTitleText": "安全"
+      }
+    },
+    {
+      "path": "pages/my/views/privacy/index",
+      "style": {
+        "navigationBarTitleText": "隐私"
+      }
+    },
+    {
+      "path": "pages/my/views/general/index",
+      "style": {
+        "navigationBarTitleText": "通用"
+      }
+    },
+    {
+      "path": "pages/my/views/general/views/notification/index",
+      "style": {
+        "navigationBarTitleText": "通知设置"
+      }
+    },
+    {
+      "path": "pages/my/views/general/views/about/index",
+      "style": {
+        "navigationBarTitleText": "关于"
+      }
+    },
+    {
+      "path": "pages/my/views/general/views/language/index",
+      "style": {
+        "navigationBarTitleText": "设置语言"
+      }
+    },
+    {
+      "path": "pages/my/views/feekback/index",
+      "style": {
+        "navigationBarTitleText": "反馈"
+      }
+    },
+    {
+      "path": "pages/home/views/merger/index",
+      "style": {
+        "navigationBarTitleText": "聊天详情"
+      }
+    },
+    {
+      "path": "pages/my/index", // 首页
+	  "style": {
+	      "disableScroll": true
+		}
+    },
+    {
+      "path": "pages/address/index", // 通讯录
+	  "style": {
+	      "disableScroll": true
+		}
+    },
+    {
+      "path": "pages/address/views/searchUsers/index"
+    },
+    {
+      "path": "pages/address/views/user/index" // 用户详情
+    },
+    {
+      "path": "pages/address/views/newFriends/index",
+      "style": {
+        "navigationBarTitleText": "新朋友"
+      }
+    },
+    {
+      "path": "pages/address/views/black/index",
+      "style": {
+        "navigationBarTitleText": "黑名单"
+      }
+    },
+    {
+      "path": "pages/address/views/group/index",
+      "style": {
+        "navigationBarTitleText": "群聊"
+      }
+    },
+    {
+      "path": "pages/address/views/groupInform/index",
+      "style": {
+        "navigationBarTitleText": "群通知"
+      }
+    },
+    {
+      "path": "pages/address/views/groupInform/views/groupApplyDetail/index",
+      "style": {
+        "navigationBarTitleText": "群通知"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/index",
+      "style": {
+        "navigationBarTitleText": "群聊"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/avatarName/index",
+      "style": {
+        "navigationBarTitleText": "编辑资料"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/notification/index",
+      "style": {
+        "navigationBarTitleText": "群公告"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/notification/views/editNotification/index",
+      "style": {
+        "navigationBarTitleText": "群公告编辑"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/welcome/index",
+      "style": {
+        "navigationBarTitleText": "入群欢迎"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/manager/index",
+      "style": {
+        "navigationBarTitleText": "群管理"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/manager/views/mute/index",
+      "style": {
+        "navigationBarTitleText": "禁言管理"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/manager/views/mute/views/addMute/index",
+      "style": {
+        "navigationBarTitleText": "禁言管理"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/manager/views/changeOwner/index",
+      "style": {
+        "navigationBarTitleText": "转让群聊"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/manager/views/manager/index",
+      "style": {
+        "navigationBarTitleText": "管理员"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/manager/views/manager/views/addAdmin/index",
+      "style": {
+        "navigationBarTitleText": "添加管理员"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/allMember/index",
+      "style": {
+        "navigationBarTitleText": "聊天成员"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/addMember/index",
+      "style": {
+        "navigationBarTitleText": "选择联系人"
+      }
+    },
+    {
+      "path": "pages/address/views/group/views/group-settings/views/removeMember/index",
+      "style": {
+        "navigationBarTitleText": "删除成员"
+      }
+    },
+    {
+      "path": "pages/repost/index",
+      "style": {
+        "navigationBarTitleText": "选择联系人"
+      }
+    },
+    {
+      "path": "pages/login/index", // 您的项目首页
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    },
+	{
+	  "path": "pages/TUIKit/components/TUIConversation/index",
+	  "style": {
+	    "navigationBarTitleText": "腾讯云 IM"
+	  }
+	},
+	{
+	  "path": "pages/TUIKit/components/TUIChat/index",
+	  "style": {
+	    "navigationBarTitleText": "腾讯云 IM",
+		"app-plus": {
+			"softinputNavBar": "none"
+		}
+	  }
+	},
+	{
+	  "path": "pages/TUIKit/components/TUIChat/message-list/merger",
+	  "style": {
+	    "navigationBarTitleText": "合并消息"
+	  }
+	},
+	// 集成 chat 组件，必须配置该路径: 视频播放
+	{
+	  "path": "pages/TUIKit/components/TUIChat/video-play",
+	  "style": {
+	    "navigationBarTitleText": "腾讯云 IM"
+	  }
+	},
+	{
+	  "path": "pages/TUIKit/components/TUIChat/web-view",
+	  "style": {
+	    "navigation  BarTitleText": "腾讯云 IM"
+	  }
+	},
+	{
+	  "path": "pages/TUIKit/components/TUIContact/index",
+	  "style": {
+	    "navigationBarTitleText": "腾讯云 IM"
+	  }
+	},
+	
+	{
+	  "path": "pages/TUIKit/components/TUIGroup/index",
+	  "style": {
+	    "navigationBarTitleText": "腾讯云 IM"
+	  }
+	},
+	{
+		"path" : "pages/my/views/switch/index",
+		"style" : 
+		{
+			"navigationBarTitleText" : "",
+			"enablePullDownRefresh" : false
+		}
+	},
+	{
+		"path" : "pages/home/views/downLoad/index",
+		"style" : 
+		{
+			"navigationBarTitleText" : "",
+			"enablePullDownRefresh" : false
+		}
+	},
+	{
+		"path" : "pages/community/views/webview",
+		"style" : 
+		{
+			"navigationBarTitleText" : "",
+			"enablePullDownRefresh" : false
+		}
+	}
+      ,{
+            "path" : "pages/my/views/general/views/protocol/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+			  "path" : "pages/TUIKit/components/TUIChat/message-list/message-tool/views/reader-list/index",
+			  "style" :                                                                                    
+			  {
+				  "navigationBarTitleText": "",
+				  "enablePullDownRefresh": false
+			  }
+			  
+		  },
+		{
+		  "path": "pages/my/views/safe/views/device/index",
+		  "style": {
+		    "navigationBarTitleText": "登录设备管理"
+		  }
+		},
+		{
+		  "path": "pages/my/views/safe/views/device/views/detail/index",
+		  "style": {
+		    "navigationBarTitleText": "",
+		    "enablePullDownRefresh": false
+		  }
+		},
+         
+		{
+		  "path": "pages/address/camera",
+		  "style": {
+		    "navigationBarTitleText": "",
+		    "enablePullDownRefresh": false
+		  }
+		},
+		{
+		  "path": "pages/TUIKit/components/TUIChat/message-input-toolbar/camera/camera",
+		  "style": {
+		    "navigationBarTitleText": "",
+		    "enablePullDownRefresh": false
+		  }
+		},
+		{
+		  "path": "pages/TUIKit/components/TUIChat/message-input-toolbar/camera/preview",
+		  "style": {
+		    "navigationBarTitleText": "",
+		    "enablePullDownRefresh": false
+		  }
+		},
+		{
+			"path" : "pages/my/views/general/views/contactUs/index",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+		  "path": "pages/TUIKit/components/TUIChat/message-list/quote",
+		  "style" :
+		  {
+		  	"navigationBarTitleText" : "",
+		  	"enablePullDownRefresh" : false
+		  }
+		}
+    ],
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#DB1F77",
+    // "borderStyle": "black",
+    // "backgroundColor": "#171826",
+    // "backgroundColor": "#ffffff",
+	// "backgroundColor": "rgba(255, 255, 255, 0.9)",
+	// "blurEffect":"extralight",
+	"spacing": "5px",
+	"height": "50px",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "iconPath": "static/images/tabbar/tb_xx11.png",
+        "selectedIconPath": "static/images/tabbar/tb_xxx.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/address/index",
+        "iconPath": "static/images/tabbar/tb_txl11.png",
+        "selectedIconPath": "static/images/tabbar/tb_txll.png",
+        "text": "通讯录"
+      },
+	  {
+	    "pagePath": "pages/community/index",
+	  		"iconPath": "static/images/tabbar/tb_sqq.png",
+	  		"selectedIconPath": "static/images/tabbar/tb_sq11.png",
+	  		"text": "社区"
+	  },
+      {
+        "pagePath": "pages/my/index",
+        "iconPath": "static/images/tabbar/tb_wd11.png",
+        "selectedIconPath": "static/images/tabbar/tb_wdd.png",
+        "text": "我的"
+      }
+	  
+    ]
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#fcfcfc",
+    "backgroundColor": "#F8F8F8",
+    "navigationStyle": "custom",
+	"app-plus": {
+		"bounce": "none"
+	}
+  }
+}

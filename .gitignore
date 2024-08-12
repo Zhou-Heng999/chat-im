@@ -1,0 +1,6 @@
+unpackage/
+im-app.rar
+.hbuilderx/launch.json
+node_modules/.package_versions.json
+node_modules/@tencentcloud/chat/modules/follow-module.js
+/node_modules

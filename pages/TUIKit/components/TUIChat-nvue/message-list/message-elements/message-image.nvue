@@ -1,0 +1,69 @@
+<template>
+	<view class="message-image">
+    <ImageCache
+      class="image"
+      :src="showInfo.url || showInfo.imageUrl"
+      @click="clickImage"
+    />
+    <MessageText
+      v-if="content"
+      class="cloud_custom_data"
+      :messageItem="formatCloudMessageItem"
+    />
+  </view>
+</template>
+
+<script>
+import MessageText from './message-text.nvue';
+	import ImageCache from '@/components/image-cache';
+import getContentFn from "../../utils/getContent";
+export default {
+  components: { MessageText,ImageCache },
+  props: {
+    messageItem: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    showInfo() {
+      return {
+        ...this.messageItem.payload.imageInfoArray?.[1]
+      }
+    },
+    content() {
+	  	return getContentFn(this.messageItem)
+	  },
+    formatCloudMessageItem() {
+      if (this.content) {
+        return {
+          ...this.messageItem,
+          payload: {
+            text: this.content.txt
+          }
+        }
+      } else {
+        return {}
+      }
+    }
+  },
+	methods: {
+		clickImage() {
+      this.$emit('clickImage', this.messageItem)
+		},
+	}
+};
+</script>
+<style scoped lang="scss">
+.message-image {
+  .image {
+    max-width: 300rpx;
+    max-height: 300rpx;
+    object-fit: cover;
+    border-radius: 16rpx;
+  }
+  .cloud_custom_data {
+
+  }
+}
+</style>

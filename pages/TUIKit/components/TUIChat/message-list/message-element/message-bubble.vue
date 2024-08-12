@@ -1,0 +1,416 @@
+<template>
+  <view
+    :id="`main_${messageItem.ID}`"
+    :class="[ isCheckMore ? 'pl_80' : '']"
+    @touchstart="touchstart"
+    @touchmove='touchmove'
+    @touchend="touchend"
+    @click="changeItemCheck"
+  >
+    <view v-if="isCheckMore" class="icon_check">
+      <imageIcon v-if="checkedIdList.includes(messageItem.ID)" name="tb_g1" :size="34" />
+      <imageIcon v-else name="tb_g2" :size="34" />
+    </view>
+    <image
+      v-if="!isSelf"
+	  mode='aspectFill'
+      class="avatar"
+      :src="messageItem.avatar + '?imageMogr2/thumbnail/100x/'"
+      @click="clickAvatar"
+    />
+	<!-- <view v-else-if="!isSelf&&!messageItem.isShowAvatar" class="avatar"></view> -->
+	
+    <view class="center">
+      <view v-if="showProgress" class="progress_bg">
+        <progress class="progress" :percent="messageItem.progress * 100" />
+      </view>
+      <view v-if="!isSelf" class="show_name">{{ showName }}</view>
+	  
+	  <!-- <view v-if="!messageItem.isShowNick" class=""></view> -->
+      
+      <view :class="{ content: true, content_opacity: isTouchStart || (toggleID === messageItem.ID) }">
+        
+        <!-- 自定义消息处理逻辑 -->
+        <view v-if="messageItem.cloudCustomData" class="cloud_custom_data">
+          <!-- 转发消息才有的提示 -->
+          <view v-if="content.from" class="forward_tip">
+            <text class="mr-10">{{ $tc('转发的消息') }}</text>
+						<text>{{ content.from }}</text>
+          </view>
+
+          <!-- 回复消息 -->
+          <DefMessageQuote
+            v-else
+            :message="messageItem"
+            @blinkMessage="blinkMessage"
+            @scrollTo="scrollTo"
+            @scrollToOriginalMessage="scrollToOriginalMessage"
+          />
+        </view>
+
+        <!-- 消息主体 -->
+        <slot />
+
+        
+        <text class="time" v-if="$u.timeFormat(messageItem.time,'h:M')" >{{ $u.timeFormat(messageItem.time,'h:M') }}</text>
+      </view>
+    </view>
+    <view v-if="isSelf" class="status">
+      <view
+        v-if="messageItem.status === 'fail' || messageItem.hasRiskContent"
+        class="icon_fail"
+        @click="resendMessage"
+      >
+        !
+      </view>
+      <imageIcon
+        v-if="messageItem.status === 'unSend'"
+        :size='30'
+        name='loading'
+        class="loadingCircle"
+      />
+    </view>
+  </view>
+</template>
+<script>
+import getContentFn from "../../utils/getContent";
+import TUIChatEngine, { TUIStore } from "@tencentcloud/chat-uikit-engine";
+import DefMessageQuote from "../message-elements/def-message-quote/index.vue";
+import ImageCache from '@/components/image-cache';
+
+let timeout = null
+
+export default {
+  components: { DefMessageQuote, ImageCache },
+  props: {
+    toggleID: {
+      type: String,
+      default: '',
+    },
+    messageItem: {
+      type: Object,
+      required: true,
+    },
+    isCheckMore: {
+      type: Boolean,
+      required: true,
+    },
+    checkedIdList: {
+      type: Array,
+      required: true,
+    }
+  },
+  data() {
+    return {
+      isTouchStart: false,
+    }
+  },
+  computed: {
+    showProgress() {
+      if (this.messageItem.status !== 'unSend') {
+        return false
+      } else {
+        return this.messageItem.status === 'unSend' &&
+          [TUIChatEngine.TYPES.MSG_IMAGE, TUIChatEngine.TYPES.MSG_VIDEO, TUIChatEngine.TYPES.MSG_AUDIO, TUIChatEngine.TYPES.MSG_FILE].includes(this.messageItem.type)
+      }
+    },
+    isSelf() {
+      return this.messageItem.flow === 'out'
+    },
+    content() {
+	  	return getContentFn(this.messageItem)
+	  },
+    showName() {
+      return this.messageItem.nameCard || this.messageItem.nick
+    },
+  },
+  methods: {
+    touchstart(e) {
+	  	this.isTouchStart = true
+	  	timeout = setTimeout(() => {
+	  		this.onLongPress(e)
+	  	}, 500)
+	  },
+    touchmove() {
+      this.isTouchStart = false
+      if (timeout) {
+        clearTimeout(timeout)
+        timeout = null
+      }
+	  },
+    touchend() {
+      this.isTouchStart = false
+      if (timeout) {
+        clearTimeout(timeout)
+        timeout = null
+      }
+	  },
+    onLongPress(e) {
+	  	let { screenHeight, screenWidth } = this.platform
+	  	let { pageY, pageX } = e.touches[0]
+	  	let toolStyle=null
+	  	let quoteContent = false
+	  	try{
+	  		let messageCl = JSON.parse(this.messageItem.cloudCustomData || "{}");
+	  		quoteContent = messageCl.messageReply?true:false
+	  	} catch(e) {
+	  		quoteContent = false
+	  	}
+	  	const query = uni.createSelectorQuery();  
+	  	query.select(`#main_${this.messageItem.ID}`).boundingClientRect();  
+	  	query.exec(() => {  
+	  		let extra = this.messageItem.flow === 'in' ? 80 : 0
+	  		if (pageY < screenHeight / 2) {
+	  			toolStyle = { top: pageY + 'rpx', left:pageX + extra + 'rpx' }
+	  		}
+	  		if (pageY > screenHeight / 2) {
+	  			toolStyle = { bottom: (screenHeight - pageY) + 'rpx', left: pageX + extra +'rpx' }
+	  		}
+	  		this.$emit("longPress", { toolStyle, isLongpress: true })
+	  	});
+	  },
+	  onSendMsgError(){
+		  let {from,flow,payload,avatar,nick}=this.messageItem
+		  let t={
+			  from,flow,payload,avatar,nick
+		  }
+		this.$http.app_user.errlog({
+			log:JSON.stringify(t)
+		}).then(res=>{
+			console.log('onSendMsgError===',res)
+		})
+	  },
+    changeItemCheck() {
+		console.log('messageItem',this.messageItem)
+      this.$emit("changeCheck")
+	  this.onSendMsgError()
+    },
+    clickAvatar() {
+      const conversationModel = TUIStore.getConversationModel(this.messageItem.conversationID);
+      this.setCardInfo(
+				this.messageItem.from,
+				conversationModel, 
+				(options) => {
+					this.$emit('seeCardInfo', options)
+				}
+			)
+    },
+    blinkMessage(messageID) {
+	  	this.$emit("blinkMessage", messageID);
+	  },
+	  scrollTo(scrollHeight) {
+	  	this.$emit("scrollTo", scrollHeight);
+	  },
+    scrollToOriginalMessage(id) {
+	  	this.$emit('scrollToOriginalMessage',id)
+	  },
+    resendMessage() {
+		  if (!this.messageItem.hasRiskContent) {
+	  		this.$emit("resendMessage")
+	  	}
+	  }
+  }
+}
+</script>
+<style lang="scss" scoped>
+view {
+  box-sizing: border-box;
+}
+.message_bubble {
+  display: flex;
+  align-items: flex-end;
+  padding: 28rpx 20rpx;
+  border-radius: 24rpx;
+  position: relative;
+  font-family: opensans-regular, Avenir, Helvetica, Arial, sans-serif !important;
+  transition: 0.4s;
+
+  .icon_check {
+    width: 34rpx;
+    height: 34rpx;
+    position: absolute;
+    bottom: 48rpx;
+    left: 28rpx;
+  }
+
+  .avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 40rpx;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .center {
+    position: relative;
+    .progress_bg {
+      display: flex;
+      align-items: center;
+      padding: 48rpx;
+      border-radius: 24rpx;
+      background-color: rgba(0, 0, 0, 0.3);
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      z-index: 1;
+      .progress {
+        width: 100%;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+    }
+    .show_name {
+			margin-bottom: 8rpx;
+			font-size: 24rpx;
+			color: #999999;
+    }
+    .content {
+      max-width: calc(100vw - 220rpx);
+      padding: 24rpx;
+      min-height: 80rpx;
+      border-radius: 24rpx;
+      opacity: 1;
+
+      .cloud_custom_data {
+
+        .forward_tip {
+          margin-bottom: 8rpx;
+			    font-size: 24rpx;
+          color: #47a3fa;
+        }
+      }
+    }
+    .content_opacity {
+      opacity: 0.6;
+    }
+    
+    .time {
+      position: absolute;
+      bottom: 0rpx;
+      right: 10rpx;
+			font-size: 20rpx;
+    }
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    width: 80rpx;
+    height: 80rpx;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    @keyframes circleLoading {
+    	0% {
+    		transform: rotate(0);
+    		opacity: 1;
+    	}
+    	100% {
+    		opacity: 1;
+    		transform: rotate(360deg);
+    	}
+    }
+
+    .loadingCircle {
+			animation: circleLoading 2s linear 0s infinite;
+		}
+    
+    .icon_fail {
+      width: 30rpx;
+      height: 30rpx;
+      line-height: 30rpx;
+      text-align: center;
+      border-radius: 15rpx;
+      font-size: 24rpx;
+      color: #ffffff;
+      background-color: red;
+    }
+  }
+}
+.bubble_in {
+  .center {
+    margin: 0px 20rpx;
+    .content {
+      position: relative;
+      background-color: #ffffff;
+	  min-width: 150rpx;
+      &::before {
+        content: "";
+        width: 0px;
+        height: 0px;
+        border-top: 12rpx solid transparent;
+        border-bottom: 12rpx solid transparent;
+        border-right: 12rpx solid #ffffff;
+        position: absolute;
+        bottom: 28rpx;
+        left: -10rpx;
+      }
+    }
+	// .content-before {
+	//   &::before {
+	//     content: "";
+	//     width: 0px;
+	//     height: 0px;
+	//     border-top: 12rpx solid transparent;
+	//     border-bottom: 12rpx solid transparent;
+	//     border-right: 12rpx solid #ffffff;
+	//     position: absolute;
+	//     bottom: 28rpx;
+	//     left: -10rpx;
+	//   }
+	// }
+    .time {
+      color: #979c9a;
+    }
+
+  }
+
+}
+.bubble_out {
+  flex-direction: row-reverse;
+  .center {
+    margin: 0px 10rpx 0px 20px;
+    .content {
+      position: relative;
+      background-color: #c2e8ff;
+	  min-width: 150rpx;
+      &::before {
+        content: "";
+        width: 0px;
+        height: 0px;
+        border-top: 12rpx solid transparent;
+        border-bottom: 12rpx solid transparent;
+        border-left: 12rpx solid #c2e8ff;
+        position: absolute;
+        bottom: 28rpx;
+        right: -10rpx;
+      }
+    }
+	// .content-before {
+	//   &::before {
+	//     content: "";
+	//     width: 0px;
+	//     height: 0px;
+	//     border-top: 12rpx solid transparent;
+	//     border-bottom: 12rpx solid transparent;
+	//     border-left: 12rpx solid #c2e8ff;
+	//     position: absolute;
+	//     bottom: 28rpx;
+	//     right: -10rpx;
+	//   }
+	// }
+    .time {
+      color: #4285f6;
+    }
+  }
+}
+.pl_80 {
+  padding-left: 80rpx;
+}
+.pd-b-5 {
+	padding-bottom: 5rpx;
+}
+</style>

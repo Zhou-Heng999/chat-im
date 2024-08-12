@@ -1,0 +1,14 @@
+@import '../../../assets/styles/common.scss';
+@import './web.scss';
+@import './h5.scss';
+@import './uni.scss';
+@import './wx.scss';
+@import './color.scss';
+.mute-input {
+	height: 116rpx;
+  line-height: 116rpx;
+  text-align: center;
+  border-top: 1rpx solid #eee;
+  color: #999999;
+  // font-size: ;
+}

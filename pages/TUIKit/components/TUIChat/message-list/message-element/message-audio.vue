@@ -1,0 +1,119 @@
+<template>
+  <view class="message-audio flex-center" :class="[messageItem.flow === 'out' && 'reserve']" @click="handlePlay">
+	  <view class="mr-10">
+	  	<audioAnm :isPlay="isPlay" :size="24" :direction="messageItem.flow === 'out'? 'left':'right'"></audioAnm>
+	  </view>
+    <label class="time">
+      {{ messageItem.payload.second || 1 }} "
+    </label>
+  </view>
+</template>
+<script>
+import audioAnm from "@/components/audioAnm/index"
+import { TUIGlobal } from "../../../../utils/universal-api/index";
+export default {
+  components: { audioAnm },
+  props: {
+    messageItem: {
+      type: Object,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      audio: TUIGlobal.createInnerAudioContext(),
+      isPlay: false,
+    }
+  },
+  mounted() {
+    this.audio.onPlay(() => {
+      console.log("开始播放");
+    });
+    this.audio.onEnded(() => {
+      console.log("停止播放");
+	    this.isPlay = false;
+    });
+    this.audio.onError((err) => {
+	    this.isPlay = false;
+	    console.log("报错了",err)
+      // ios 音频播放无声，可能是因为系统开启了静音模式
+      TUIGlobal?.showToast({
+        icon: "none",
+        title: "该音频暂不支持播放",
+      });
+    });
+    this.audio.onPause(() => {
+	    this.isPlay = false;
+    });
+
+    // 监听一个关闭播放
+    uni.$on('stopAudioPlay', () => {
+    	this.audio.stop();
+    	this.isPlay = false;
+    })
+  },
+  destroyed() {
+  	this.audio.stop()
+	this.audio.destroy()
+  },
+  methods: {
+    handlePlay() {
+      if (this.messageItem.hasRiskContent) {
+        return;
+      }
+
+      if (this.isPlay) {
+	      this.audio.stop();
+	      this.isPlay = false;
+	      return
+      }
+      if (this.messageItem.payload.url) {
+	      if (this.messageItem.payload.url.includes("_doc")) {
+	          this.audio.src = this.messageItem.payload.url;
+	          this.audio.play();
+	      }else {
+	    	  uni.downloadFile({
+	    	  	url: this.messageItem.payload.url,
+	    	  	success: (res) => {
+	    	  		if (res.statusCode === 200) {
+	    	  			this.audio.src = res.tempFilePath;
+	    	  			this.audio.play();
+	    	  		}
+	    	  	}
+	    	  });
+	      }
+      }
+      this.isPlay = true;
+    }
+  }
+}
+</script>
+<style lang="scss" scoped>
+@import "../../../../assets/styles/common.scss";
+.message-audio {
+  display: flex;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  cursor: pointer;
+  overflow: hidden;
+  .icon {
+    margin-right: 7px;
+    margin-left: 0px;
+  }
+  .time {
+    max-width: 200px;
+    text-align: start;
+  }
+}
+.reserve {
+  flex-direction: row-reverse;
+  .time {
+    text-align: end;
+  }
+  .icon {
+    margin-right: 0px;
+    margin-left: 7px;
+    transform: rotate(180deg);
+  }
+}
+</style>

@@ -1,0 +1,456 @@
+<template>
+	<view>
+
+		<!-- #ifndef H5 -->
+		<epii-camera ref="camera" :style="{ width: width, height: height }"></epii-camera>
+
+		<view v-if="!recordState" class="break flash" @click="swtchFlash">
+			<imageIcon width="52rpx" height="52rpx"
+				:src="`/static/images/flash_${flashState ? 'fill' : 'line'}.png`"></imageIcon>
+		</view>
+		<view v-if="!recordState" class="break switch" @click="openCamera(toggle)">
+			<imageIcon width="52rpx" height="52rpx" :src="`/static/images/tb_xjfz.png`"></imageIcon>
+		</view>
+
+		<view class="sheet" :style="{ height: sheetHeight - 65 }">
+			
+			<view class="flex-box" :style="{ height: sheetHeight - 65 }">
+
+				<view class="event" :style="{ visibility: recordState ? 'hidden' : 'visible' }" @click="goBack">
+					<imageIcon width="80rpx" height="80rpx" src="/static/images/previous2.png"></imageIcon>
+				</view>
+
+				<view class="event" @tap="eventClick" @longpress="eventLongTap" @touchstart='touchstart'
+					@touchend='touchend'>
+					<huihui-progress originalColor="#ACACAC" processColor="#52C165" innerbgColor="#FFFFFF"
+						:process="progress" :startPosDegree="0" :radius="90" :barWidth="12">
+					</huihui-progress>
+				</view>
+
+				<view class="event" style="visibility: hidden">
+					<imageIcon width="60rpx" height="60rpx" :src="`/static/images/tb_dx.png`"></imageIcon>
+				</view>
+			</view>
+		</view>
+		<!-- #endif -->
+
+		<!-- 测试代码 -->
+		<!-- #ifdef H5 -->
+		<view class="camera" :style="{ width: width, height: '650px' }">
+			<imageIcon width="100%" height="650px"
+				src="https://t7.baidu.com/it/u=3631608752,3069876728&fm=193&f=GIF"></imageIcon>
+		</view>
+
+		<view v-if="!recordState" class="break flash" @click="swtchFlash">
+			<imageIcon width="52rpx" height="52rpx"
+				:src="`/static/images/flash_${flashState ? 'fill' : 'line'}.png`"></imageIcon>
+		</view>
+		<view v-if="!recordState" class="break switch" @click="openCamera(toggle)">
+			<imageIcon width="52rpx" height="52rpx" :src="`/static/images/tb_xjfz.png`"></imageIcon>
+		</view>
+
+		<view class="sheet" :style="{ height: '162px' }">
+			<view class="flex-box" :style="{ height: '162px' }">
+
+				<view class="event" :style="{ visibility: recordState ? 'hidden' : 'visible' }" @click="goBack">
+					<imageIcon width="80rpx" height="80rpx" src="/static/images/previous2.png"></imageIcon>
+				</view>
+
+				<view class="event" @tap="eventClick" @longtap="eventLongTap" @touchstart='touchstart'
+					@touchend='touchend'>
+					<huihui-progress originalColor="#ACACAC" processColor="#52C165" innerbgColor="#FFFFFF"
+						:process="progress" :startPosDegree="0" :radius="90" :barWidth="12">
+					</huihui-progress>
+				</view>
+
+				<view class="event" style="visibility: hidden">
+					<imageIcon width="60rpx" height="60rpx" :src="`/static/images/tb_dx.png`"></imageIcon>
+				</view>
+			</view>
+		</view>
+		<!-- #endif -->
+
+		<Preview v-if="showPreview" :previewSrc="previewSrc" :source="source" :cameraHeight="cameraHeight"
+			:sheetHeight="sheetHeight" @close="showPreview = false" @sendFile="sendFile" />
+	</view>
+</template>
+
+<script>
+	import Preview from './preview.vue'
+	import huihuiProgress from '@/components/huihui-progress/huihui-progress.vue'
+	export default {
+		components: {
+			Preview,
+			huihuiProgress
+		},
+		data() {
+			return {
+				height: "300rpx",
+				width: "750rpx",
+				cid: 0,
+				flashState: false,
+				recordState: false,
+				windowHeight: 0,
+				windowWidth: 0,
+				cameraHeight: 0,
+				sheetHeight: 0,
+				toggle: 0,
+
+				showPreview: false,
+				previewSrc: '',
+				source: '',
+
+				touchT: '',
+				touchE: '',
+				eventType: 'click',
+
+				finishTimerId: null,
+				finishing: false,
+				progress: 0,
+			}
+		},
+		onLoad() {
+			const that = this
+			uni.getSystemInfo({
+				success(res) {
+					that.windowWidth = res.windowWidth
+					that.windowHeight = res.windowHeight
+				}
+			})
+
+			this.$nextTick(() => {
+				// 这里可以做打开摄像头等功能
+				this.openCamera(0)
+			})
+		},
+		methods: {
+			getCameras() {
+				this.$refs.camera.getCameras(function(data) {
+					uni.showModal({
+						content: JSON.stringify(data)
+					})
+				});
+			},
+			openCamera(id) {
+				this.toggle = id == 0 ? 1 : 0
+				if (uni.getSystemInfoSync().platform === "ios") {
+					this.$refs.camera.openCamera({
+						cameraId: id,
+						scene: 1, //仅ios，Android不需要。场景（打开摄像头的目的是什么）1 拍照  ； 2 拍照和录制 ； 3 拍照和静默获取图片（静默获取是不通过拍照随时可以获取当前的摄像头画面，可用来做ocr识别，或人脸检测等）
+					}, function(data) {
+						// uni.showModal({
+						// 	content: JSON.stringify(data)
+						// })
+					});
+				} else {
+					//android 系统需要考虑 组件的宽高 和摄像头的宽高比例，如果不一致会导致拉伸
+					this.openCamera_1(id);
+					//如果不考虑拉伸问题也可以直接打开摄像头
+					// this.$refs.camera.openCamera({
+					// 	cameraId: id,
+					// }, function(data) {
+					// 	uni.showModal({
+					// 		content: JSON.stringify(data)
+					// 	})
+					// });
+				}
+			},
+			openCamera_1(id) {
+				const that = this
+
+				//安卓解决拉伸问题，一般有两种思路。
+				//1. 组件宽高不变，找出最适合的分辨比率
+				//2. 根据摄像头的分辨率，来重新修改组件的宽和高。
+				this.cid = id;
+
+				let type = 2; //1  组件宽高不变，找出最适合的分辨比率  2根据摄像头的分辨率，来重新修改组件的宽和高。
+
+				// uni.showModal({
+				// 	content:"拉伸问题有三种解决方法，目前是第2中，你可以在代码中修改type的值"
+				// })
+
+
+				this.$refs.camera.getSupportedPreviewSizesByCameraId({
+					cameraId: id
+				}, (data) => {
+					console.log(data);
+					console.log(uni.getSystemInfoSync())
+
+					let bestHeight_index = 0;
+					//方法1 组件宽高不变，找出最适合的分辨比率，这样只能减少拉伸，不能解决
+					if (type == 1) {
+						let r0 = (this.height * 1.0) / this.width;
+						let diff = 1000;
+						for (var i = 0; i < data.sizes.length; i++) {
+							console.log(data.sizes[i]);
+							//找出最合适的分辨率，宽高比例尽量接近组件的（摄像头宽高是反着呢）
+							let tmp = Math.abs(r0 - (data.sizes[i].width * 1.0) / data.sizes[bestHeight_index]
+								.width);
+							if (tmp < diff) {
+								diff = tmp;
+								bestHeight_index = i;
+							}
+						}
+						//方法2 先获取摄像头 支持的分辨率，然后修改组件的大小（一般保持宽不变），这样肯定不拉伸	 
+					} else if (type == 2) {
+
+						for (var i = 0; i < data.sizes.length; i++) {
+							console.log(data.sizes[i]);
+							//找出最大高度对应的分辨比率（宽高是反着呢）
+							if (data.sizes[i].width > data.sizes[bestHeight_index].width) {
+								bestHeight_index = i;
+							}
+						}
+
+
+						//this.width = data.sizes[max_index].height;
+						//计算出当前宽度下最适合的高度，然后修改组件的高
+						this.height = ((data.sizes[bestHeight_index].width / (data.sizes[bestHeight_index].height *
+							1.0)) * 750) + "rpx";
+						// 3 用最大分辨比率，不考虑拉伸	
+					} else if (type == 3) {
+						bestHeight_index = 0; //最大的一般是第一个，你也可以遍历后找出最大分辨比率
+
+					}
+
+					//延迟打开摄像头，组件大小修改需要时间	
+					setTimeout(() => {
+						this.$refs.camera.openCamera({
+							cameraId: id,
+							previewWidth: data.sizes[bestHeight_index].width,
+							previewHeight: data.sizes[bestHeight_index].height
+						}, function(data) {
+							const cameraHeight = that.$refs.camera.style.height.replace('rpx',
+								'') / 2
+							const h = that.windowHeight - cameraHeight
+							that.cameraHeight = cameraHeight
+							that.sheetHeight = h
+						});
+					}, 500);
+				});
+				return;
+
+			},
+
+			// 切换摄像头
+			switchCamera() {
+				this.$refs.camera.switchCamera({
+					cameraId: 1 - this.cid
+				}, function(data) {
+				});
+			},
+
+			// 拍照
+			takePicture(e) {
+				const that = this
+				
+				this.$refs.camera.takePicture({
+					base64: false,
+					quailty: 100,
+					flashMode: that.flashState ? 'on' : "off"
+				}, function(data) {
+					that.flashState = !that.flashState
+					that.swtchFlash()
+					that.previewSrc = 'file://' + data.img
+					that.source = 'picture'
+					that.showPreview = true
+				})
+			},
+
+			// 开始录制
+			start() {
+				const that = this
+				this.$refs.camera.startRecord({
+					videoEncodingBitRate: 3 * 1920 * 1080,
+					videoWidth: 1280,
+					videoHeight: 720
+				}, (data) => {
+					if(data.success == false) {
+						uni.showModal({
+							content: 'startRecord' + JSON.stringify(data)
+						})
+						that.recordState = false
+						return
+					}
+					
+					this.recordState = true
+					this.recording()
+					
+				}, (error) => {
+					console.log('error...', error)
+				});
+			},
+
+			// 完成录制
+			finish() {
+				const that = this
+				this.$refs.camera.stopRecord(function(data) {
+					//可以通过 uni.compressVideo 压缩视频 记得前缀 file://
+					if(data.success == false) {
+						uni.showModal({
+							content: 'stopRecord' + JSON.stringify(data)
+						})
+						that.recordState = false
+						return
+					}
+					uni.saveVideoToPhotosAlbum({
+						filePath: "file://" + data.path,
+						success: function() {
+							that.recordState = false
+							
+							that.flashState = !that.flashState
+							that.swtchFlash()
+
+							that.previewSrc = 'file://' + data.path
+							that.source = 'video'
+							that.showPreview = true
+
+							console.log('previewSrc...', that.previewSrc)
+						}
+					});
+
+				});
+			},
+			
+			// 录制中
+			recording() {
+				const interval = 100,
+					max = 15
+				const step = (100 / max) * (interval / 1000)
+				this.finishTimerId = setInterval(() => {
+					this.progress = this.progress + step
+					if (this.progress >= 100 || this.finishing == false) {
+						this.finish()
+						this.resetRecord()
+					}
+				}, interval)
+			},
+			
+			// 手电筒开关
+			swtchFlash() {
+				this.flashState = !this.flashState
+				if (this.flashState) {
+					this.flashOpen()
+				} else {
+					this.flashClose()
+				}
+			},
+			// 开灯
+			flashOpen() {
+				this.$refs.camera.flashOpen();
+			},
+			// 关灯
+			flashClose() {
+				this.$refs.camera.flashClose();
+			},
+			
+			touchstart() {
+				console.log('touchstart...')
+				this.touchT = new Date().getTime()
+			},
+			touchend() {
+				console.log('touchend...', this.progress)
+				if(this.progress <= 6.66) {
+					this.recordState = false
+					this.resetRecord()
+					return
+				}
+				this.touchE = new Date().getTime()
+				if (this.eventType === 'long') {
+					if (this.finishing && this.progress < 100) {
+						console.log('finished...')
+						this.finish()
+						this.resetRecord()
+					}
+				}
+			},
+			eventClick() {
+				if (this.touchE - this.touchT < 300) {
+					this.eventType = 'click'
+					console.log('点击...')
+					this.takePicture()
+				}
+			},
+			eventLongTap() {
+				console.log('长按...')
+				this.eventType = 'long'
+				this.finishing = true;
+				this.start()
+			},
+			resetRecord() {
+				console.log('resetRecord...')
+				clearInterval(this.finishTimerId)
+				this.finishTimerId = null
+				this.finishing = false
+				this.progress = 0
+			},
+			sendFile(e) {
+				const eventChannel = this.getOpenerEventChannel();
+				eventChannel.emit('someEvent', e);
+				this.showPreview = false
+				this.goBack()
+			},
+			goBack() {
+				uni.navigateBack()
+			}
+		}
+	}
+</script>
+<style lang="scss" scoped>
+	.camera {
+		background: #fff;
+	}
+
+	.sheet {
+		position: relative;
+		background: #000;
+	}
+
+	.flex-box {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		width: 750rpx;
+	}
+
+	.record {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.break {
+		position: absolute;
+		z-index: 10;
+	}
+
+	.flash {
+		top: 100rpx;
+		left: 40rpx;
+
+	}
+
+	.switch {
+		top: 100rpx;
+		right: 40rpx;
+	}
+
+	.take {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 156rpx;
+		height: 156rpx;
+		border-radius: 50%;
+		background: #ACACAC;
+
+		.inner {
+			width: 108rpx;
+			height: 108rpx;
+			border-radius: 50%;
+			background: #fff;
+		}
+	}
+</style>

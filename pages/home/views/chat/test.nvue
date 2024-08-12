@@ -1,0 +1,214 @@
+  <template>
+    <view class="wrapper">
+      <list  class="scroller" style="transform: scaleY(-1);" @loadmore='loadmore' :loadmoreoffset='10' @scroll='scroll' >
+		  <refresh class="refresh" :display="refreshing ? 'show' : 'hide'" @refresh="onrefresh"  
+		                  @pullingdown="onpullingdown">  
+		                  <div class="refresh-view">  
+		                      <view ref="progress" class="nvue-downwarp-progress"></view>  
+		                      <text class="loading-text">{{refreshText}}</text>  
+		                  </div>  
+		              </refresh>  
+        <cell  v-for="(item, index) in messageList" :ref="'item'+index">
+			<view style="transform: scaleY(-1);height: 100px;"  :ref="'text'+index" >
+				<img  mode="aspectFill" :lazy-load='true' style="height: 100rpx;width: 100rpx;" src="https://im-1320696072.cos.ap-singapore.myqcloud.com/img/20240124_213641_506519.jpg?imageMogr2/thumbnail/100x/" class="radius-_50"></img>
+				<text>头像呢===</text>
+				<text >{{item.ID}}</text>
+				<avatar
+			</view>
+        </cell>
+      </list >
+     <view class="group">
+		 <input type="text" v-model="inputVal" style="border: 1px solid saddlebrown; width: 200px;"  />
+		 <text @click="sendText" >发送</text>
+        <!-- <text @click="goto10" class="button">Go to 10</text>
+        <text @click="goto20" class="button">Go to 20</text> -->
+      </view>
+    </view>
+  </template>
+  <script>
+	  import avatarModal from '@/components/avatar/index.vue'
+	  import { ListMixin } from '@/mixin/chat';
+	  import TencentCloudChat from '@tencentcloud/chat';
+	  import TUIChatEngine, {
+	  	IMessageModel,
+	  	TUIStore,
+	  	StoreName,
+	  	TUITranslateService,
+	  	TUIChatService,
+	  	TUIGroupService,
+	  	TUIFUN
+	  } from "@tencentcloud/chat-uikit-engine";
+    const dom = uni.requireNativePlugin('dom')
+	 var BindingDown = null;  
+	const Binding = uni.requireNativePlugin('bindingx');  
+    export default {
+      data() {
+        return {
+          rows: [],
+		   refreshing: false, 
+		   inputVal:''
+        }
+      },
+	  mixins:[ListMixin],
+	  components:{
+		  avatarModal
+	  },
+	  computed: {  
+	              refreshText() {  
+	                  return "加载中"  
+	              },
+				  messageList(){
+					  console.log('6666')
+					  return getApp().globalData.messageList
+				  }
+	          },  
+      created() {
+        for (let i = 0; i < 50; i++) {
+          this.rows.push({title:'row ' + i,})
+        }
+		this.watchChat()
+		let chat = TencentCloudChat.create({SDKAppID:20006203}); 
+		// TencentCloudChat.
+		console.log('ListMixin',)
+		chat.getMessageList({conversationID:'GROUPdev#1704890735280'}).then(res=>{
+			console.log('getMessageList=========',res)
+		})
+      },
+      methods: {
+		  sendText(){
+			  let {inputVal}=this
+			  this.rows.unshift({title:inputVal,})
+			  this.inputVal=''
+		  },
+		  getEl: function(el) {  
+		                  if (typeof el === 'string' || typeof el === 'number') return el;  
+		                  if (WXEnvironment) {  
+		                      return el.ref;  
+		                  } else {  
+		                      return el instanceof HTMLElement ? el : el.$el;  
+		                  }  
+		              },  
+		              // 完成下拉  
+		              onrefresh(e) {  
+						  let that=this
+		                  this.refreshing = true;  
+		                  var result = Binding.bind({  
+		                      eventType: 'timing',  
+		                      props: [{  
+		                          element: this.getEl(this.$refs.progress),  
+		                          property: 'transform.rotate',  
+		                          expression: "t%600 / 600 * 360"  
+		                      }]  
+		                  }, function(e) {  
+		                      console.log("timing"); 
+							   for (let i = 0; i < 10; i++) {
+							     that.rows.unshift({title:'上啦 ' + i,})
+							   }
+		                  });  
+		                  setTimeout(() => {  
+		                      Binding.unbind({  
+		                          token: result.token,  
+		                          eventType: "timing"  
+		                      })  
+							  
+		                      this.refreshing = false;  
+		                  }, 1000)  
+		              },  
+		              // 进行下拉  
+		              onpullingdown(e) {  
+		                  console.log("onpullingdown");  
+		                  BindingDown = Binding.bind({  
+		                      anchor: this.getEl(this.$refs.list),  
+		                      eventType: 'pan',  
+		                      props: [{  
+		                          element: this.getEl(this.$refs.progress),  
+		                          property: 'transform.rotate',  
+		                          expression: '360 + abs(y)'  
+		                      }]  
+		                  }, function(e) {  
+		                      console.log("ok");  
+		                  });  
+		              },  
+        goto10(count) {
+          const el = this.$refs.item10[0]
+          dom.scrollToElement(el, {})
+        },
+		loadmore(){
+			console.log('loadmore======')
+			for (let i = 0; i < 10; i++) {
+			  this.rows.push({title:'底部 ' + i,})
+			}
+		},
+		scroll(e){
+			// console.log('scroll======',e)
+		},
+        goto20(count) {
+          const el = this.$refs.item20[0]
+          dom.scrollToElement(el, {
+            offset: 0
+          })
+        }
+      }
+    }
+  </script>
+  <style scoped>
+    .scroller {
+      width:750rpx;
+      height:600px;
+      margin-top: 120rpx;
+    }
+	.refresh-view {  
+	        flex-direction: row;  
+	        justify-content: center;  
+	        align-items: center;  
+	        height: 100rpx;  
+	        width: 750rpx;  
+	    }  
+	 
+	    .nvue-downwarp-progress {  
+	        width: 32rpx;  
+	        height: 32rpx;  
+	        border: 2rpx solid gray;  
+	        border-radius: 25rpx;  
+	        border-right-color: rgba(0, 0, 0, 0);  
+	    }  
+	 
+	    .loading-text {  
+	        font-size: 28rpx;  
+	        margin-left: 16rpx;  
+	        color: gray;  
+	    }  
+    .row {
+      height: 100rpx;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 30rpx;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+      border-bottom-color: #DDDDDD;
+    }
+    .text {
+      font-size: 45rpx;
+      color: #666666;
+    }
+    .group {
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 60rpx;
+    }
+    .button {
+      width: 200rpx;
+      padding-top: 20rpx;
+      padding-bottom: 20rpx;
+      font-size: 40rpx;
+      margin-left: 30rpx;
+      margin-right: 30rpx;
+      text-align: center;
+      color: #41B883;
+      border-width: 2px;
+      border-style: solid;
+      border-color: rgb(162, 217, 192);
+      background-color: rgba(162, 217, 192, 0.2);
+    }
+  </style>
+

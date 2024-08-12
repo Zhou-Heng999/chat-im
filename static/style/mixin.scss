@@ -1,0 +1,32 @@
+@mixin flexRowCent() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexColCent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexRowBetCent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flexColBetCent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin absCent() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

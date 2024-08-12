@@ -1,0 +1,171 @@
+<template>
+	<view class="message_list">
+		1111111111111
+		<list
+			ref="list"
+			:scrollable="true"
+			class="list_content"
+			@scroll="scrollList"
+			@loadmore="loadmoreList"
+		>
+		  <cell v-for="(item, index) in messageList" :key="item.ID">
+				{{item.ID}}
+		    <!-- <MessageBubble
+					:messageItem="item"
+					:blinkMessageIDList="blinkMessageIDList"
+		    	:toggleID="toggleID"
+					:isCheckMore="isShowEdit"
+					:checkedIdList="checkedIdList"
+		    	@seeCardInfo="seeCardInfo"
+					@resendMessage="resendMessage(item)"
+		    	@changeCheck="changeCheck(item, index)"
+					@blinkMessage="blinkMessage"
+		    	@scrollTo="scrollTo"
+					@scrollToOriginalMessage='scrollToOriginalMessage'
+		    	@longPress="longPressBubble"
+				>
+		    	<MessageText v-if="item.type === TYPES.MSG_TEXT" :messageItem="item" @seeCardInfo="seeCardInfo" />
+		    	<MessageImage v-else-if="item.type === TYPES.MSG_IMAGE" :messageItem="item" @clickImage="handleImagePreview" />
+		    	<MessageVideo v-else-if="item.type === TYPES.MSG_VIDEO" :messageItem="item" />
+		    	<MessageMerger v-else-if="item.type === TYPES.MSG_MERGER" :messageItem="item" />
+		    	<MessageAudio v-else-if="item.type === TYPES.MSG_AUDIO" :messageItem="item" />
+		    	<MessageFile v-else-if="item.type === TYPES.MSG_FILE" :messageItem="item" />
+		    	<MessageCustom v-else-if="item.type === TYPES.MSG_CUSTOM" @seeCardInfo="seeCardInfo" :messageItem="item" />
+		    	<view v-else>没有兼容的消息</view>
+		    </MessageBubble> -->
+		  </cell>
+		</list>
+		22222222222222
+	</view>
+</template>
+
+<script>
+import TUIChatEngine, {
+	IMessageModel,
+	TUIStore,
+	StoreName,
+	TUITranslateService,
+	TUIChatService,
+	TUIGroupService,
+} from "@tencentcloud/chat-uikit-engine";
+// import MessageText from "./message-elements/message-text.nvue";
+// import MessageImage from "./message-elements/message-image.nvue";
+// import MessageVideo from "./message-elements/message-video.nvue";
+// import MessageAudio from "./message-elements/message-audio.nvue";
+// import MessageFile from "./message-elements/message-file.nvue";
+// import MessageCustom from "./message-elements/message-custom.nvue";
+// import MessageMerger from "./message-elements/message-merger.nvue";
+// import MessageBubble from "./message-elements/message-bubble.nvue";
+const dom = uni.requireNativePlugin('dom')
+export default {
+	// components: { MessageText, MessageImage, MessageVideo, MessageAudio, MessageFile, MessageCustom, MessageMerger, MessageBubble },
+	data() {
+		return {
+			TYPES: TUIChatEngine.TYPES,
+			isCompleted: false,
+			messageList: [],
+			blinkMessageIDList: [],
+			toggleID: '',
+			isShowEdit: false,
+			checkedIdList: [],
+		}
+	},
+	onLoad() {
+		this.TUIStoreWatchStart()
+	},
+	methods: {
+		onMessageListUpdatedTimeout(list) {
+			console.log('list ===========', list)
+			this.messageList = list
+		},
+		onCurrentConversation() {
+			
+		},
+		onCurrentConversationUpdate() {
+			
+		},
+		onChatCompletedUpdated(bool) {
+			this.isCompleted = bool
+		},
+		scrollTo() {
+			
+		},
+		scrollToOriginalMessage() {
+			
+		},
+		scrollToBottom() {
+			
+		},
+		blinkMessage() {
+			
+		},
+		changeCheck() {
+			
+		},
+		resendMessage() {
+			
+		},
+		longPressBubble() {
+			const refList = this.$refs['list']
+			console.log(refList, refList.scrollToElement, refList.setSpecialEffects, dom)
+		},
+		seeCardInfo() {
+			
+		},
+		handleImagePreview() {
+			
+		},
+		scrollList(event) {
+			console.log('scrollList.event ===========', event)
+		},
+		loadmoreList(event) {
+			console.log('loadmoreList.event ===========', event)
+		},
+		TUIStoreWatchStart() {
+			console.log('TUIStoreWatchStart =================================================')
+			TUIStore.watch(StoreName.CHAT, {
+				messageList: this.onMessageListUpdatedTimeout,
+				isCompleted: this.onChatCompletedUpdated,
+			});
+			TUIStore.watch(StoreName.CONV, {
+				currentConversation: this.onCurrentConversation,
+			});
+			TUIStore.watch(StoreName.CONV, {
+				currentConversation: this.onCurrentConversationUpdate,
+			})
+		},
+		TUIStoreWatchEnd() {
+			TUIStore.unwatch(StoreName.CHAT, {
+				messageList: this.onMessageListUpdatedTimeout,
+				isCompleted: this.onChatCompletedUpdated,
+			});
+			TUIStore.unwatch(StoreName.CONV, {
+				currentConversation: this.onCurrentConversation,
+			});
+			TUIStore.unwatch(StoreName.CONV, {
+				currentConversation: this.onCurrentConversationUpdate,
+			})
+		},
+	}
+}
+</script>
+
+<style lang="scss" scoped>
+.message_list {
+	box-sizing: border-box;
+	background-color: #f3f3f3;
+	// overflow: hidden;
+	position: relative;
+	.list_content {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		// height: 100%;
+		// width: 100%;
+		border: 2px solid green;
+		overflow-y: scroll;
+	}
+}
+</style>

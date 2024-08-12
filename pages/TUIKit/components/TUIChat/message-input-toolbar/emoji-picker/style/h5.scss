@@ -1,0 +1,32 @@
+.emoji-picker-h5 {
+  width: 100%;
+  &-list {
+    justify-content: space-between;
+  }
+  &-list::after {
+    content: "";
+    display: block;
+    flex: 1 1 auto;
+  }
+  .send-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    position: absolute;
+    font-size: 16px;
+    color: #ffffff;
+	&.send {
+		right: 16px;
+		width: 50px;
+		height: 30px;
+		background-color: #55C06A;
+	}
+	&.clear {
+		right: 76px;
+		width: 36px;
+		height: 36px;
+		border-radius: 4px;
+		background-color: #fff;
+	}
+  }
+}

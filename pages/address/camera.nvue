@@ -1,0 +1,324 @@
+<template>
+	<div>
+
+		<!-- 宽和高的设置如果和分辨率比率不一致，在android下会导致拉伸-->
+		
+		<epii-camera ref="camera" :style="{width:width,height:height}"></epii-camera>
+		<div style="height: 100vh; overflow-y: auto">
+			<view><text style="color: #DD524D;">提示，本页面为基础功能展示，详细的参数和函数请到插件市场查看。</text></view>
+			<view><text style="color: #007AFF;">{{tip}}</text></view>
+			
+			<view style="margin-top: 20rpx;"  ><text style="color: #09BB07;">---打开摄像头前可以使用的方法-----</text></view>
+			<button @click="getCameras()">获取摄像头列表</button>
+			<button @click="getSupportedPreviewSizesByCameraId(0)">获取支持的预览尺寸(后摄像头)</button>
+			<button @click="getSupportedPreviewSizesByCameraId(1)">获取支持的预览尺寸(前摄像头)</button>
+			<button @click="getSupportedPictureSizesByCameraId(0)">获取支持的拍照图片尺寸(后摄像头)（仅安卓）</button>
+			<button @click="getSupportedPictureSizesByCameraId(1)">获取支持的拍照图片尺寸(前摄像头)（仅安卓）</button>
+			
+			<view style="margin-top: 30rpx;"><text style="color: #09BB07;">----拍照和录制视频常用方法-----</text></view>
+			<view style="margin-top: 20rpx;"><text style="color: #09BB07;">	ios需要在打开摄像头时候，传入场景（场景（打开摄像头的目的是什么）1 拍照  ； 2 拍照和录制 ； 3 拍照和静默获取图片（静默获取是不通过拍照随时可以获取当前的摄像头画面，可用来做ocr识别，或人脸检测等））</text></view>
+			
+			<button @click="openCamera(0)">打开摄像头(后摄像头)</button>
+			<button @click="openCamera(1)">打开摄像头(前摄像头)</button>
+			<button @click="switchCamera()">切换摄像头</button>
+			<button @click="takePicture()">拍照</button>
+			<button @click="start()">录制开始</button>
+			<button @click="stop()">录制结束</button>
+			<button @click="release()">释放摄像头资源</button>
+			<button @click="getSupportedPreviewSizes()">获取已经打开摄像头支持的分辨率</button>
+			<button @click="getSupportedPictureSizes()">获取已经打开摄像头支持的分辨率</button>
+			
+			<view style="margin-top: 30rpx;"><text style="color: #09BB07;">----灯光方法-----</text></view>
+			<button @click="flashOpen()">开灯</button>
+			<button @click="flashClose()">关灯</button>
+			
+			 
+			<view style="margin-top: 30rpx;"><text style="color: #09BB07;">----缩放常用方法-----</text></view>
+			<button @click="getMaxZoomFactor()">获取最大缩放值</button>
+			<button @click="setZoomFactor()">设置缩放</button>
+
+			<view style="margin-top: 30rpx;"><text style="color: #09BB07;">----高级方法，实现随时获取数据，可做人脸识别，物品识别，身份证识别等-----</text></view>
+			<button @click="getCurrentImage()">静默获取当前图片（无需拍照）</button>
+
+		</div>
+
+
+	</div>
+</template>
+
+<script>
+	//插件市场有详细文档， 支持的参数都文档中。
+	//插件市场地址 https://ext.dcloud.net.cn/plugin?id=3583
+	export default {
+		data() {
+			return {
+				height: "300rpx",
+				width: "750rpx",
+				cid: 0,
+				tip:`如果组件没有找到，请按照以下步骤
+				1 。在插件市场，找出此插件，然后点击购买(或试用)
+				2 。记得要在manifest.json 中云端插件中 选择摄像头插件
+				3 。编译自定义基座
+				4 。在运行时候，切换刚才编译的自定义基座
+				5 。在手机上运行
+				`
+				
+			}
+		},
+		
+		onLoad() {
+			this.$nextTick( ()=>{
+				 //这里可以做打开摄像头等功能
+			})
+		
+			
+		},
+		onShow() {},
+		methods: {
+			getCameras() {
+				console.log('camera...', this.$refs.camera)
+				console.log('getCameras...', this.$refs.camera.getCameras)
+				this.$refs.camera.getCameras(function(data) {
+					uni.showModal({
+						content: JSON.stringify(data)
+					})
+				});
+			},
+			getSupportedPreviewSizesByCameraId(id) {
+				this.$refs.camera.getSupportedPreviewSizesByCameraId({
+					cameraId: id
+				}, function(data) {
+					uni.showModal({
+						content: JSON.stringify(data)
+					})
+				});
+			},
+			getSupportedPictureSizesByCameraId(id) {
+				this.$refs.camera.getSupportedPictureSizesByCameraId({
+					cameraId: id
+				}, function(data) {
+					uni.showModal({
+						content: JSON.stringify(data)
+					})
+				});
+			},
+			takePicture(e) {
+				this.$refs.camera.takePicture({
+					base64: false,
+					quailty: 100,
+					flashMode: "on"
+				}, function(data) {
+					// uni.showModal({
+					// 	content: JSON.stringify(data)
+					// })
+					// //直接打开预览
+					uni.previewImage({
+						urls: ["file://" + data.img],
+						current: 0
+					});
+
+				});
+			},
+			openCamera(id) {
+				if (uni.getSystemInfoSync().platform === "ios") {
+					this.$refs.camera.openCamera({
+						cameraId: id,
+						scene :1,//仅ios，Android不需要。场景（打开摄像头的目的是什么）1 拍照  ； 2 拍照和录制 ； 3 拍照和静默获取图片（静默获取是不通过拍照随时可以获取当前的摄像头画面，可用来做ocr识别，或人脸检测等）
+					}, function(data) {
+						uni.showModal({
+							content: JSON.stringify(data)
+						})
+					});
+				} else {
+					//android 系统需要考虑 组件的宽高 和摄像头的宽高比例，如果不一致会导致拉伸
+					this.openCamera_1(id);
+					//如果不考虑拉伸问题也可以直接打开摄像头
+					// this.$refs.camera.openCamera({
+					// 	cameraId: id,
+					// }, function(data) {
+					// 	uni.showModal({
+					// 		content: JSON.stringify(data)
+					// 	})
+					// });
+				}
+			},
+			openCamera_1(id) {
+
+			//安卓解决拉伸问题，一般有两种思路。
+			//1. 组件宽高不变，找出最适合的分辨比率
+			//2. 根据摄像头的分辨率，来重新修改组件的宽和高。
+				this.cid = id;
+				
+				let type = 2;//1  组件宽高不变，找出最适合的分辨比率  2根据摄像头的分辨率，来重新修改组件的宽和高。
+				
+				uni.showModal({
+					content:"拉伸问题有三种解决方法，目前是第2中，你可以在代码中修改type的值"
+				})
+				
+				
+				this.$refs.camera.getSupportedPreviewSizesByCameraId({
+					cameraId: id
+				}, (data) => {
+					console.log(data);
+					console.log(uni.getSystemInfoSync())
+					let bestHeight_index = 0;
+					//方法1 组件宽高不变，找出最适合的分辨比率，这样只能减少拉伸，不能解决
+					if(type==1){
+						 let  r0 = (this.height*1.0)/this.width;
+						 let diff=1000;
+						 for (var i = 0; i < data.sizes.length; i++) {
+						 	console.log( data.sizes[i]);
+						 	//找出最合适的分辨率，宽高比例尽量接近组件的（摄像头宽高是反着呢）
+							let tmp =Math.abs( r0- (data.sizes[i].width*1.0) /data.sizes[bestHeight_index].width);
+						 	if ( tmp <diff) {
+						 		diff = tmp;
+								bestHeight_index = i;
+						 	}
+						 }
+					//方法2 先获取摄像头 支持的分辨率，然后修改组件的大小（一般保持宽不变），这样肯定不拉伸	 
+					}else if(type==2){
+						
+						for (var i = 0; i < data.sizes.length; i++) {
+							console.log( data.sizes[i]);
+							//找出最大高度对应的分辨比率（宽高是反着呢）
+							if (data.sizes[i].width > data.sizes[bestHeight_index].width) {
+								bestHeight_index = i;
+							}
+						}
+						
+						
+						//this.width = data.sizes[max_index].height;
+						//计算出当前宽度下最适合的高度，然后修改组件的高
+						this.height = ((data.sizes[bestHeight_index].width / (data.sizes[bestHeight_index].height * 1.0)) * 750)  +"rpx";
+					// 3 用最大分辨比率，不考虑拉伸	
+					}else if(type==3){
+						bestHeight_index =0;//最大的一般是第一个，你也可以遍历后找出最大分辨比率
+						 
+					}
+					
+					//延迟打开摄像头，组件大小修改需要时间	
+					setTimeout(() => {
+						this.$refs.camera.openCamera({
+							cameraId: id,
+							previewWidth: data.sizes[bestHeight_index].width,
+							previewHeight: data.sizes[bestHeight_index].height
+						}, function(data) {
+							uni.showModal({
+								content: JSON.stringify(data)
+							})
+						});
+					}, 500);
+
+
+				});
+				return;
+
+			},
+			switchCamera() {
+				this.$refs.camera.switchCamera({
+					cameraId: 1 - this.cid
+				}, function(data) {
+					uni.showModal({
+						content: JSON.stringify(data)
+					})
+				});
+			},
+			start() {
+				this.$refs.camera.startRecord({
+					videoEncodingBitRate: 3 * 1920 * 1080,
+					videoWidth: 1280,
+					videoHeight: 720
+				}, (ret) => {
+					uni.showModal({
+						content: JSON.stringify(ret)
+					})
+				});
+			},
+			stop() {
+				this.$refs.camera.stopRecord(function(data) {
+					//可以通过 uni.compressVideo 压缩视频 记得前缀 file://
+					uni.showModal({
+						content: JSON.stringify(data)
+					})
+
+					uni.saveVideoToPhotosAlbum({
+						filePath: "file://" + data.path,
+						success: function() {
+							console.log('save success');
+						}
+					});
+
+				});
+			},
+			release() {
+				this.$refs.camera.release();
+			},
+			flashOpen() {
+				this.$refs.camera.flashOpen();
+			},
+			flashClose() {
+				this.$refs.camera.flashClose();
+			},
+			changeSize() {
+				this.height = "1100rpx";
+
+
+				// setTimeout(()=>{
+				// 	 this.$refs.camera.changeFrame();
+				// },1000);
+
+			},
+			getSupportedPreviewSizes() {
+				this.$refs.camera.getSupportedPreviewSizes((ret) => {
+					uni.showModal({
+						content: JSON.stringify(ret)
+					})
+				});
+			},
+			getSupportedPictureSizes() {
+				this.$refs.camera.getSupportedPreviewSizes((ret) => {
+					uni.showModal({
+						content: JSON.stringify(ret)
+					})
+				});
+			},
+			getMaxZoomFactor() {
+				this.$refs.camera.getMaxZoomFactor((ret) => {
+					uni.showModal({
+						content: JSON.stringify(ret)
+					})
+				});
+			},
+
+			setZoomFactor() {
+				this.$refs.camera.setZoomFactor({
+					value: 2
+				});
+			},
+			getCurrentImage() {
+				
+					this.$refs.camera.getCurrentImage({
+						base64: false,
+						quailty: 100,
+					}, function(data) {
+						if (data.success)
+							uni.previewImage({
+								urls: ["file://" + data.img],
+								current: 0
+							});
+
+					});
+				
+			},
+
+			setZoomFactor() {
+				this.$refs.camera.setZoomFactor({
+					value: 2
+				});
+
+			}
+
+
+		}
+	}
+</script>

@@ -1,0 +1,20 @@
+{
+  "name": "uniapp-init",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tencentcloud/chat": "^3.3.0",
+    "@tencentcloud/chat-uikit-uniapp": "^2.0.0",
+    "crypto-js": "^4.2.0",
+    "uni-read-pages": "^1.0.5",
+    "unplugin-vue2-script-setup": "^0.11.4",
+    "uview-ui": "^2.0.36"
+  }
+}
